@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belimaa — Premium cultural, spiritual and decorative products. Explore Temple Mandirs, Festival Décor, Home Decoration, Embroidery and Metal Embroidery collections.">
+  <meta name="keywords" content="Belimaa, pooja mandir, temple decor, festival gifts, home decor, embroidery, zardozi, metal embroidery, Indian handicrafts">
+  <meta property="og:title" content="Belimaa — Premium Spiritual & Decorative Products">
+  <meta property="og:description" content="Handcrafted cultural, spiritual and decorative products. Temple, Festival, Home Décor, Embroidery & Metal Embroidery.">
+  <title>Belimaa — Premium Cultural & Spiritual Décor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">🪔</div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-brand"><span class="b">Beli</span><span class="g">maa</span></div>
+        <div class="nav-logo-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+      </div>
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="category.html?cat=Temple">Temple</a>
+      <a href="category.html?cat=Festival">Festival</a>
+      <a href="category.html?cat=Home+Decor">Home Decor</a>
+      <a href="category.html?cat=Embroidery">Embroidery</a>
+      <a href="category.html?cat=Metal+Embroidery">Metal Embroidery</a>
+    </nav>
+
+    <div class="nav-right">
+      <form id="nav-search-form" class="nav-search">
+        <i class="fa-solid fa-search" style="color:rgba(255,255,255,0.7);font-size:0.8rem"></i>
+        <input type="search" id="nav-search-input" placeholder="Search products…">
+      </form>
+      <a href="cart.html" class="nav-icon-btn" title="Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="nav-badge cart-count-badge" style="display:none">0</span>
+      </a>
+      <a href="products.html" class="nav-cta">Shop Now</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="category.html?cat=Temple">🛕 Temple</a>
+    <a href="category.html?cat=Festival">🎉 Festival</a>
+    <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+    <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+    <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+    <a href="products.html">All Products</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+  <div class='nav-slogan'>&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+</nav>
+
+
+<!-- ============ CATEGORY GRID ============ -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <span class="section-badge" id="collections-badge">Browse by Category</span>
+      <h2 class="section-title" id="collections-title">Shop Our Collections</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="category-cards" id="category-cards">
+    <a href="category.html?cat=Temple" class="category-card">
+      <img src="images/ram.jpg" alt="Temple" loading="lazy" class="fit-contain" id="category-image-temple">
+      <div class="category-card-overlay">
+        <div class="category-card-name">🛕 Temple</div>
+        <div class="category-card-count">Mandirs & Prayer Decor</div>
+      </div>
+    </a>
+    <a href="category.html?cat=Festival" class="category-card">
+      <img src="https://sspark.genspark.ai/cfimages?u1=vz06js61wrrf%2FdBS052hqw1%2FslpTqCbezOum7tBYgJPkONytzTZCty4fHWCPNrqythSeaOW2L5x3uBh0px5kqSKV%2BQ%3D%3D&u2=0VZUByVsY0xfrFtW&width=2560" alt="Festival" loading="lazy" id="category-image-festival">
+      <div class="category-card-overlay">
+        <div class="category-card-name">🎉 Festival</div>
+        <div class="category-card-count">Diwali, Navratri & More</div>
+      </div>
+    </a>
+    <a href="category.html?cat=Home+Decor" class="category-card">
+      <img src="https://sspark.genspark.ai/cfimages?u1=KgdkrtW8niyor4YejJGVqjRsJYLhC5zC4kC3cROKGt2vr2qor11O55%2F966jEV5JiDoxPB2MWk3%2FfRJS0J5ICu%2BYbvg%3D%3D&u2=E6Z3Jr8vTaGQYwFA&width=2560" alt="Home Decor" loading="lazy" id="category-image-decor">
+      <div class="category-card-overlay">
+        <div class="category-card-name">🏠 Home Decor</div>
+        <div class="category-card-count">Wall Art & Decoratives</div>
+      </div>
+    </a>
+    <a href="category.html?cat=Embroidery" class="category-card">
+      <img src="https://sspark.genspark.ai/cfimages?u1=dHG8Ry6UYj8DkuK8DIy%2BYnLxkYKQXdCMTE2lqgKqkUgYwTSOhBmB8p6Xz8Wuz8Hj8hZpsRj2BAdzZ746wNwebln8qUff1eBrMmSN&u2=Qz5nWzMke3iuM127&width=2560" alt="Embroidery" loading="lazy" id="category-image-embroidery">
+      <div class="category-card-overlay">
+        <div class="category-card-name">🧵 Embroidery</div>
+        <div class="category-card-count">Zari & Handwork</div>
+      </div>
+    </a>
+    <a href="category.html?cat=Metal+Embroidery" class="category-card">
+      <img src="https://sspark.genspark.ai/cfimages?u1=elPMAWXlxsEHMvPsh9lRPihUzvY0XgQoyNXTgau0qfaTsuQIjeH7LMRBrgoer5ndcnsX6DSgAWqJi2NYpskjrGagh%2F%2BBMty0z5OMR0FDxsdhogDdStNTnKI%2Brx95BbW5EJ10FbM%3D&u2=VRILA5siR2Y5cIz%2F&width=2560" alt="Metal Embroidery" loading="lazy" id="category-image-metal">
+      <div class="category-card-overlay">
+        <div class="category-card-name">✨ Metal Embroidery</div>
+        <div class="category-card-count">Zardozi & Metalwork</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ============ TEMPLE SECTION ============ -->
+<section class="cat-section alt-bg">
+  <div class="cat-section-inner">
+    <div class="section-header">
+      <div>
+        <span class="cat-section-label temple">🛕 Temple Collection</span>
+        <h2 class="section-title" id="temple-section-title">Sacred Temple Mandirs</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" id="temple-section-subtitle">Handcrafted wooden and MDF mandirs for your sacred space. CNC laser precision meets traditional craftsmanship.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <a href="category.html?cat=Temple" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="scroll-controls">
+          <button class="scroll-btn" onclick="scrollSection('temple-track',-1)" title="Prev">&#8249;</button>
+          <button class="scroll-btn" onclick="scrollSection('temple-track',1)" title="Next">&#8250;</button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-section">
+      <div class="scroll-track" id="temple-track">
+        <div class="scroll-inner" id="temple-products">
+          <!-- Loaded by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FESTIVAL SECTION ============ -->
+<section class="cat-section">
+  <div class="cat-section-inner">
+    <div class="section-header">
+      <div>
+        <span class="cat-section-label festival">🎉 Festival Collection</span>
+        <h2 class="section-title" id="festival-section-title">Festival Décor & Gifts</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" id="festival-section-subtitle">Celebrate every festival with premium handcrafted décor. Diwali diyas, Navratri sets, rangoli mats and more.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <a href="category.html?cat=Festival" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="scroll-controls">
+          <button class="scroll-btn" onclick="scrollSection('festival-track',-1)">&#8249;</button>
+          <button class="scroll-btn" onclick="scrollSection('festival-track',1)">&#8250;</button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-section">
+      <div class="scroll-track" id="festival-track">
+        <div class="scroll-inner" id="festival-products">
+          <!-- Loaded by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOME DECOR SECTION ============ -->
+<section class="cat-section alt-bg2">
+  <div class="cat-section-inner">
+    <div class="section-header">
+      <div>
+        <span class="cat-section-label home-decor">🏠 Home Decor</span>
+        <h2 class="section-title" id="decor-section-title">Elevate Your Space</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" id="decor-section-subtitle">Premium wall art, laser-cut panels, mandala hangings and decorative pieces to beautify every room.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <a href="category.html?cat=Home+Decor" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="scroll-controls">
+          <button class="scroll-btn" onclick="scrollSection('decor-track',-1)">&#8249;</button>
+          <button class="scroll-btn" onclick="scrollSection('decor-track',1)">&#8250;</button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-section">
+      <div class="scroll-track" id="decor-track">
+        <div class="scroll-inner" id="decor-products"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMBROIDERY SECTION ============ -->
+<section class="cat-section">
+  <div class="cat-section-inner">
+    <div class="section-header">
+      <div>
+        <span class="cat-section-label embroidery">🧵 Embroidery</span>
+        <h2 class="section-title" id="embroidery-section-title">Artisan Embroidery</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" id="embroidery-section-subtitle">Traditional Indian hand-embroidered cushion covers, pillow cases and décor pieces with Zari and Suzani work.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <a href="category.html?cat=Embroidery" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="scroll-controls">
+          <button class="scroll-btn" onclick="scrollSection('embroidery-track',-1)">&#8249;</button>
+          <button class="scroll-btn" onclick="scrollSection('embroidery-track',1)">&#8250;</button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-section">
+      <div class="scroll-track" id="embroidery-track">
+        <div class="scroll-inner" id="embroidery-products"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METAL EMBROIDERY SECTION ============ -->
+<section class="cat-section alt-bg">
+  <div class="cat-section-inner">
+    <div class="section-header">
+      <div>
+        <span class="cat-section-label metal">✨ Metal Embroidery</span>
+        <h2 class="section-title" id="metal-section-title">Luxury Zardozi Art</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" id="metal-section-subtitle">Rare and exquisite Zardozi metal embroidery — royal tapestries, wall panels and collectible art pieces with metallic threadwork.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <a href="category.html?cat=Metal+Embroidery" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="scroll-controls">
+          <button class="scroll-btn" onclick="scrollSection('metal-track',-1)">&#8249;</button>
+          <button class="scroll-btn" onclick="scrollSection('metal-track',1)">&#8250;</button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-section">
+      <div class="scroll-track" id="metal-track">
+        <div class="scroll-inner" id="metal-products"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RANDOM / MIXED PRODUCTS ============ -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <span class="section-badge">🌟 Hand-Picked</span>
+      <h2 class="section-title">You Might Also Love</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">A curated mix from all our collections — explore something new.</p>
+    </div>
+    <a href="products.html" class="view-all-link">View All Products <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+  <div class="products-grid" id="random-products">
+    <!-- Loaded by JS -->
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="newsletter-section">
+  <div style="position:relative;z-index:2">
+    <div style="font-size:2.4rem;margin-bottom:12px">📬</div>
+    <h2 class="newsletter-title">Stay Inspired</h2>
+    <p class="newsletter-sub">Subscribe to receive new arrivals, festive offers and crafting stories directly to your inbox.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+      <button type="submit" class="newsletter-submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <span class="footer-logo-mark">🪔</span>
+          <span class="footer-brand-name">Beli<span class="g">maa</span></span>
+        </div>
+        <div class="footer-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+        <p class="footer-desc">Premium cultural, spiritual and decorative handcrafted products. Temple mandirs, festival décor, embroidery and more — made with love in India.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/belimaa0657/" class="footer-social-btn" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/belimaa0657" class="footer-social-btn" title="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/917209395894" class="footer-social-btn" title="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.youtube.com/@saiutsavdecorjh" class="footer-social-btn" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <a href="category.html?cat=Temple">🛕 Temple</a>
+        <a href="category.html?cat=Festival">🎉 Festival</a>
+        <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+        <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+        <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">All Products</a>
+        <a href="cart.html">My Cart</a>
+        <a href="admin.html">Admin Panel</a>
+        <a href="#contact-section">Contact Us</a>
+      </div>
+      <div class="footer-col" id="contact-section">
+        <h4>Contact Belimaa</h4>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.82 6.82l1.27-.4a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +91 90070 10316
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@belimaa.in
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jamshedpur, Jharkhand, India
+        </div>
+          <a href="https://wa.me/917209395894" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;background:#25d366;color:#fff;padding:8px 16px;border-radius:20px;font-size:0.8rem;font-weight:700" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Belimaa. All rights reserved. Made with ❤️ in India.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;·&nbsp;
+        <a href="#">Shipping Policy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING BUTTONS ============ -->
+<div class="cart-float">
+  <a href="https://wa.me/917209395894" class="whatsapp-float" target="_blank" title="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <button class="cart-float-btn" id="cart-float-btn" title="Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart-float-count" style="display:none">0</span>
+  </button>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div id="toast"></div>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="js/shared.js"></script>
+<script>
+/* ---- Homepage Product Loading ---- */
+const CATEGORIES = ['Temple', 'Festival', 'Home Decor', 'Embroidery', 'Metal Embroidery'];
+const SECTION_MAP = {
+  'Temple':           'temple-products',
+  'Festival':         'festival-products',
+  'Home Decor':       'decor-products',
+  'Embroidery':       'embroidery-products',
+  'Metal Embroidery': 'metal-products'
+};
+let allProducts = [];
+
+async function loadHomePage() {
+  try {
+    // Load all products
+    const res = await getProducts({ limit: 100 });
+    allProducts = (res && res.data) ? res.data : [];
+
+    // Render each category section
+    CATEGORIES.forEach(cat => {
+      const catProducts = allProducts.filter(p => p.category === cat && p.active !== false);
+      const containerId = SECTION_MAP[cat];
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      if (catProducts.length === 0) {
+        el.innerHTML = `<div style="padding:20px 0;color:var(--ink3);font-size:0.88rem">No products yet in this category.</div>`;
+        return;
+      }
+      el.innerHTML = catProducts.map(buildProductCard).join('');
+    });
+
+    // Render random/mixed products (shuffle all, pick 8)
+    const shuffled = [...allProducts].sort(() => Math.random() - 0.5).slice(0, 8);
+    renderProductGrid('random-products', shuffled);
+
+  } catch (err) {
+    console.error('Failed to load products:', err);
+    document.querySelectorAll('[id$="-products"]').forEach(el => {
+      el.innerHTML = `<div style="color:var(--ink3);font-size:0.85rem;padding:16px 0">Loading products...</div>`;
+    });
+    // Show placeholder cards on error
+    renderProductGrid('random-products', generatePlaceholderProducts());
+    CATEGORIES.forEach(cat => {
+      const el = document.getElementById(SECTION_MAP[cat]);
+      if (el) el.innerHTML = generatePlaceholderProducts(cat).map(buildProductCard).join('');
+    });
+  }
+}
+
+function generatePlaceholderProducts(cat) {
+  const placeholders = {
+    'Temple': [
+      { id: 'p1', name: 'Wall-Mounted Mandir', category: 'Temple', price: 3499, original_price: 4200, featured: true, image_url: 'https://sspark.genspark.ai/cfimages?u1=bdWsVmLIi6eIpVwEkOwL7JB4pa0fRQTe62aTzwsrH4yzUSE2yGHt8ti%2F8%2BTziMN45IdhjkKmctH5ma2SVw0K1otaecy38Rb4I8jPoCnierH0cqeWCtkxqqTEf%2FOP2BeCcXUyLZE%3D&u2=lYuEqPxOvHALYqkG&width=2560' },
+      { id: 'p2', name: 'Premium Table Mandir', category: 'Temple', price: 4999, original_price: 6000, image_url: 'https://sspark.genspark.ai/cfimages?u1=tzF%2BoW9j9wuvpaX3qjGSFJwaNNFh8FTtNLzjSLsqCaUu3StD6ELUJwgdryTruEtjekXmCoT36gJkUXfK247Y0tumnw%3D%3D&u2=RZoKNLKIR1b4boKA&width=2560' },
+      { id: 'p3', name: 'CNC Laser Mandir', category: 'Temple', price: 5999, original_price: 7200, image_url: 'https://sspark.genspark.ai/cfimages?u1=1aowXfnTC%2FrR3YHN%2BhB2zG04vVo21C%2BtMXUw%2FKjiZ5wUGfP5NOPbqvFPFsn%2FdfgHnn9TIt5mAHNJ9afgKeFeSV0YORKVWkMB8plD7jWu1HqFP%2Fcx0hxzP8VqiGQ%2FGF78mWcly2s%3D&u2=chvq22IVpiDAvpS7&width=2560' },
+      { id: 'p4', name: 'Corner Mandir Shelf', category: 'Temple', price: 2799, original_price: 3500, image_url: 'https://sspark.genspark.ai/cfimages?u1=OPfVeCzzPyxGjBsZQPE%2F2hVg1GaFyzN%2F8t01mULGUOEyvP%2FqhGoHKixSzspxzUOAHo3P%2Fu5iKy6ZZGeqcnm9JoB%2FvlaA5eNbvr6wMdDyYfvLu0JG3Y6KVw%3D%3D&u2=cM1N5nPPJENGw43O&width=2560' }
+    ],
+    'Festival': [
+      { id: 'p5', name: 'Diwali Diya Collection', category: 'Festival', price: 699, original_price: 899, image_url: 'https://sspark.genspark.ai/cfimages?u1=D3UC9kZjMMsC96bLk2MuQFUkxAT9WQGLVaJThDPzpAnFesgpDxmUP8%2BkS9QiOu8Ydo%2Fe5RsUP42F8Nh0ljWiEtLZobyn2l2ithP4n6H%2BVF4vbOy1ZEnL&u2=EHLhz%2FRwTQGyyY1B&width=2560' },
+      { id: 'p6', name: 'Navratri Diya Set', category: 'Festival', price: 899, original_price: 1100, image_url: 'https://sspark.genspark.ai/cfimages?u1=vz06js61wrrf%2FdBS052hqw1%2FslpTqCbezOum7tBYgJPkONytzTZCty4fHWCPNrqythSeaOW2L5x3uBh0px5kqSKV%2BQ%3D%3D&u2=0VZUByVsY0xfrFtW&width=2560' },
+      { id: 'p7', name: 'Kundan Rangoli Mat', category: 'Festival', price: 1299, original_price: 1599, image_url: 'https://sspark.genspark.ai/cfimages?u1=31E1iRjAssnhGVH7TF5Py6NpE1M%2BOXYUyko1A4ZfI1lOYXlVXKQsCjg6lIcUKETC2IOTyZakAliJbwWE5snLZiQtHOXASUbNSdZe6e2Syy%2BtcqVwm3uVnvEsftupYW24YaHw6ZI%3D&u2=4WDzweMmEhlJTJfB&width=2560' },
+      { id: 'p8', name: 'Acrylic Diya Rangoli', category: 'Festival', price: 599, original_price: 799, image_url: 'https://sspark.genspark.ai/cfimages?u1=gkgieE4T7aOz2qsP3cDlkTf%2FSMNmy%2B%2Bjolm94RYgefpMnvtcbzVytz3YlmQ8rlJkXQ7L1m6s8o2k1o0es77vHPxx4CcnWW4uYY91xHGIHEVVj6VT3vZRTUS2KzPqdSZMBCMgUG4%3D&u2=apTC0butKibO%2BM0g&width=2560' }
+    ],
+    'Home Decor': [
+      { id: 'p9', name: 'Om Round Wall Decor', category: 'Home Decor', price: 799, original_price: 999, image_url: 'https://sspark.genspark.ai/cfimages?u1=S8hpxq2zMb4Vak7a9gJpx0N0y1HB%2BQPpDHsr7H6%2F7yFgT8WaJrdnk%2FY5q3FkZD4vzHlm5Urmaxp3%2BOVCLX5jwG4EZQ%3D%3D&u2=r8zDCJygSYGRxcOG&width=2560' },
+      { id: 'p10', name: 'Multilayer Wall Art', category: 'Home Decor', price: 2299, original_price: 2800, image_url: 'https://sspark.genspark.ai/cfimages?u1=KgdkrtW8niyor4YejJGVqjRsJYLhC5zC4kC3cROKGt2vr2qor11O55%2F966jEV5JiDoxPB2MWk3%2FfRJS0J5ICu%2BYbvg%3D%3D&u2=E6Z3Jr8vTaGQYwFA&width=2560' },
+      { id: 'p11', name: 'Mandala Wall Hanging', category: 'Home Decor', price: 1599, original_price: 1999, image_url: 'https://sspark.genspark.ai/cfimages?u1=14RkNDDccHrsBV3ruPNAl4tTT9BQA90cNCfhmx2NeLAs4Q4T156aLro8TuAPWZeEa%2BNoadiRpdeVRulad6zq%2BfbIlloC6Z%2BV0RNIvzm7gxSn&u2=QNs20PexSIbgeyik&width=2560' },
+      { id: 'p12', name: 'Peacock Wall Art', category: 'Home Decor', price: 1899, original_price: 2400, image_url: 'https://sspark.genspark.ai/cfimages?u1=NkdU%2BlG8c4qyNlSOOaaF5jk19uhYDuWtRN%2BCJlmqwkOuI9DK%2BsEHgQbed3Fw2%2FPv6IdedgzuO8FJcaddtu6FdqOSBw%3D%3D&u2=URpuGvwmuidk1tle&width=2560' }
+    ],
+    'Embroidery': [],
+    'Metal Embroidery': []
+  };
+  if (cat) return placeholders[cat] || [];
+  return Object.values(placeholders).flat().sort(() => Math.random() - 0.5).slice(0, 8);
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  showToast('Thank you! You\'ve been subscribed. 🎉', 'success');
+  e.target.reset();
+}
+
+// Initialize
+loadHomePage();
+</script>
+</body>
+</html>
+
+
+
+

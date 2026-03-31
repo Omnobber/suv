@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart — Belimaa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .checkout-form { background:#fff; border-radius:var(--radius-md); border:1px solid var(--border); padding:22px; margin-top:16px; box-shadow:var(--shadow-sm); }
+    .checkout-title { font-family:'Poppins',sans-serif; font-size:1rem; font-weight:800; margin-bottom:18px; color:var(--ink); }
+    .payment-option { display:flex; align-items:center; gap:10px; padding:10px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; margin-bottom:8px; transition:var(--transition); }
+    .payment-option:hover, .payment-option.active { border-color:var(--blue-mid); background:var(--blue-pale); }
+    .payment-option input { cursor:pointer; }
+    .coupon-row { display:flex; gap:8px; }
+    .coupon-row input { flex:1; padding:9px 14px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:0.85rem; }
+    .coupon-row button { white-space:nowrap; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">🪔</div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-brand"><span class="b">Beli</span><span class="g">maa</span></div>
+        <div class="nav-logo-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="category.html?cat=Temple">Temple</a>
+      <a href="category.html?cat=Festival">Festival</a>
+      <a href="category.html?cat=Home+Decor">Home Decor</a>
+      <a href="category.html?cat=Embroidery">Embroidery</a>
+      <a href="category.html?cat=Metal+Embroidery">Metal Embroidery</a>
+    </nav>
+    <div class="nav-right">
+      <a href="cart.html" class="nav-icon-btn active">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="nav-badge cart-count-badge" style="display:none">0</span>
+      </a>
+      <a href="products.html" class="nav-cta">Shop All</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="category.html?cat=Temple">🛕 Temple</a>
+    <a href="category.html?cat=Festival">🎉 Festival</a>
+    <a href="products.html">All Products</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+  <div class='nav-slogan'>&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-banner">
+  <h1 class="page-banner-title">🛒 My Cart</h1>
+  <p class="page-banner-sub" id="cart-page-sub">Review your items and proceed to checkout</p>
+</div>
+
+<!-- CART CONTENT -->
+<div class="cart-wrap">
+  <!-- EMPTY STATE -->
+  <div class="cart-empty" id="cart-empty" style="display:none">
+    <div class="cart-empty-icon">🛍️</div>
+    <h2 class="cart-empty-title">Your cart is empty</h2>
+    <p style="color:var(--ink3);margin-bottom:24px">Looks like you haven't added anything yet.<br>Browse our beautiful collections!</p>
+    <a href="products.html" class="btn btn-primary">Start Shopping</a>
+    <div style="margin-top:32px">
+      <p style="font-size:0.85rem;color:var(--ink3);margin-bottom:16px">Popular collections:</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a href="category.html?cat=Temple" class="btn btn-ghost btn-sm">🛕 Temple</a>
+        <a href="category.html?cat=Festival" class="btn btn-ghost btn-sm">🎉 Festival</a>
+        <a href="category.html?cat=Home+Decor" class="btn btn-ghost btn-sm">🏠 Home Decor</a>
+        <a href="category.html?cat=Metal+Embroidery" class="btn btn-ghost btn-sm">✨ Metal Embroidery</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART WITH ITEMS -->
+  <div id="cart-filled" style="display:none">
+    <div class="cart-grid">
+      <!-- ITEMS -->
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <h2 style="font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:800;color:var(--ink)">
+            Cart Items (<span id="items-count">0</span>)
+          </h2>
+          <button class="btn btn-sm" style="background:#fce4ec;color:#c62828;border-radius:20px;font-size:0.8rem" onclick="clearCart()">
+            <i class="fa-solid fa-trash"></i> Clear Cart
+          </button>
+        </div>
+        <div id="cart-items-list"></div>
+        <a href="products.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--blue-deep);font-weight:600;margin-top:12px">
+          <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </a>
+      </div>
+
+      <!-- SUMMARY + CHECKOUT -->
+      <div>
+        <!-- COUPON -->
+        <div class="checkout-form" style="margin-top:0;margin-bottom:0">
+          <div class="checkout-title">Have a Coupon?</div>
+          <div class="coupon-row">
+            <input type="text" id="coupon-input" placeholder="Enter coupon code">
+            <button class="btn btn-ghost btn-sm" onclick="applyCoupon()">Apply</button>
+          </div>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="cart-summary" style="position:static;margin-top:14px">
+          <div class="cart-summary-title">Order Summary</div>
+          <div class="cart-summary-row">
+            <span>Subtotal (<span id="sum-count">0</span> items)</span>
+            <span class="val" id="sum-subtotal">₹0</span>
+          </div>
+          <div class="cart-summary-row">
+            <span>Shipping</span>
+            <span class="val" id="sum-shipping" style="color:var(--green-deep)">Free</span>
+          </div>
+          <div class="cart-summary-row" id="discount-row" style="display:none;color:var(--green-deep)">
+            <span>Discount</span>
+            <span class="val" id="sum-discount">-₹0</span>
+          </div>
+          <div class="cart-summary-row total">
+            <span>Total</span>
+            <span class="val" id="sum-total">₹0</span>
+          </div>
+          <button class="btn btn-primary btn-full btn-lg" style="margin-top:16px" onclick="proceedCheckout()">
+            Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <a href="https://wa.me/917209395894" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;background:#25d366;color:#fff;font-weight:700;padding:12px;border-radius:14px;font-size:0.9rem">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+          <div style="display:flex;justify-content:center;gap:12px;margin-top:14px">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/phonepe.svg" alt="PhonePe" style="height:20px;opacity:0.5;filter:grayscale(1)">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlepay.svg" alt="GPay" style="height:20px;opacity:0.5;filter:grayscale(1)">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa" style="height:20px;opacity:0.5;filter:grayscale(1)">
+          </div>
+        </div>
+
+        <!-- CHECKOUT FORM -->
+        <div class="checkout-form" id="checkout-form" style="display:none">
+          <div class="checkout-title">Delivery Details</div>
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-control" id="ch-name" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="ch-email" placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone *</label>
+              <input type="tel" class="form-control" id="ch-phone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Delivery Address *</label>
+            <textarea class="form-control" id="ch-address" rows="3" placeholder="Full address with PIN code" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment Method</label>
+            <label class="payment-option active" id="pay-cod">
+              <input type="radio" name="payment" value="cod" checked> 💵 Cash on Delivery (COD)
+            </label>
+            <label class="payment-option" id="pay-upi">
+              <input type="radio" name="payment" value="upi"> 📱 UPI / QR Code
+            </label>
+            <label class="payment-option" id="pay-whatsapp">
+              <input type="radio" name="payment" value="whatsapp"> 💬 WhatsApp Order
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Order Notes (Optional)</label>
+            <textarea class="form-control" id="ch-notes" rows="2" placeholder="Any special instructions..."></textarea>
+          </div>
+          <button class="btn btn-primary btn-full btn-lg" onclick="placeOrder()">
+            <i class="fa-solid fa-check"></i> Place Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS MODAL -->
+<div class="modal-overlay" id="order-success-modal">
+  <div class="modal-box" style="text-align:center">
+    <div style="font-size:4rem;margin-bottom:12px">🎉</div>
+    <h2 class="modal-title" style="text-align:center">Order Placed Successfully!</h2>
+    <p style="color:var(--ink2);margin-bottom:8px">Thank you for your order! Our team will contact you shortly to confirm.</p>
+    <p style="color:var(--ink3);font-size:0.85rem;margin-bottom:24px" id="order-id-display"></p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+        <a href="https://wa.me/917209395894" target="_blank" class="btn btn-ghost">
+        <i class="fa-brands fa-whatsapp"></i> Track on WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><span class="footer-logo-mark">🪔</span><span class="footer-brand-name">Beli<span class="g">maa</span></span></div>
+        <div class="footer-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+        <p class="footer-desc">Premium cultural, spiritual and decorative handcrafted products. Made with love in India.</p>
+      </div>
+      <div class="footer-col"><h4>Collections</h4>
+        <a href="category.html?cat=Temple">🛕 Temple</a>
+        <a href="category.html?cat=Festival">🎉 Festival</a>
+        <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4>
+        <a href="index.html">Home</a><a href="products.html">All Products</a>
+      </div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone" style="color:var(--blue-light);font-size:0.85rem"></i>+91 90070 10316</div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope" style="color:var(--blue-light);font-size:0.85rem"></i>hello@belimaa.in</div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 Belimaa. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="js/shared.js"></script>
+<script>
+let discountAmount = 0;
+let checkoutVisible = false;
+
+function renderCart() {
+  const items = Cart.get();
+  const emptyEl = document.getElementById('cart-empty');
+  const filledEl = document.getElementById('cart-filled');
+
+  if (items.length === 0) {
+    emptyEl.style.display = 'block';
+    filledEl.style.display = 'none';
+    document.getElementById('cart-page-sub').textContent = 'Your cart is empty';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  filledEl.style.display = 'block';
+
+  const totalCount = items.reduce((s,i) => s + (i.qty||1), 0);
+  document.getElementById('items-count').textContent = totalCount;
+  document.getElementById('sum-count').textContent = totalCount;
+  document.getElementById('cart-page-sub').textContent = `${totalCount} item${totalCount>1?'s':''} in your cart`;
+
+  // Render items
+  document.getElementById('cart-items-list').innerHTML = items.map(item => `
+    <div class="cart-item" data-id="${item.id}">
+      <img class="cart-item-img" src="${normalizeAssetPath(item.image_url) || 'https://placehold.co/80x80/e8f4fb/2a7fba?text=B'}" alt="${item.name}"
+           onerror="this.src='https://placehold.co/80x80/e8f4fb/2a7fba?text=B'">
+      <div class="cart-item-info">
+        <div class="cart-item-cat">${item.category || ''}</div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${formatPrice(item.price)}</div>
+      </div>
+      <div class="qty-controls" style="flex-shrink:0">
+        <button class="qty-btn" onclick="updateItemQty('${item.id}',${(item.qty||1)-1})">−</button>
+        <span class="qty-num" style="display:flex;align-items:center;justify-content:center">${item.qty || 1}</span>
+        <button class="qty-btn" onclick="updateItemQty('${item.id}',${(item.qty||1)+1})">+</button>
+      </div>
+      <div style="margin-left:8px;font-weight:800;color:var(--green-deep);font-size:0.95rem;min-width:80px;text-align:right">
+        ${formatPrice(item.price * (item.qty || 1))}
+      </div>
+      <button class="cart-item-remove" onclick="removeItem('${item.id}')" title="Remove">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  `).join('');
+
+  updateSummary();
+}
+
+function updateSummary() {
+  const items = Cart.get();
+  const subtotal = Cart.total();
+  const shipping = subtotal >= 999 ? 0 : 79;
+  const total = subtotal - discountAmount + shipping;
+
+  document.getElementById('sum-subtotal').textContent = formatPrice(subtotal);
+  document.getElementById('sum-shipping').textContent = shipping === 0 ? 'FREE 🎉' : formatPrice(shipping);
+  document.getElementById('sum-total').textContent = formatPrice(total);
+  
+  if (discountAmount > 0) {
+    document.getElementById('discount-row').style.display = 'flex';
+    document.getElementById('sum-discount').textContent = '-' + formatPrice(discountAmount);
+  }
+}
+
+function updateItemQty(id, qty) {
+  Cart.update(id, qty);
+  renderCart();
+}
+
+function removeItem(id) {
+  Cart.remove(id);
+  renderCart();
+  showToast('Item removed from cart');
+}
+
+function clearCart() {
+  if (confirm('Clear all items from cart?')) {
+    Cart.clear();
+    renderCart();
+    showToast('Cart cleared');
+  }
+}
+
+function applyCoupon() {
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  const COUPONS = { 'BELIMAA10': 0.10, 'FIRST20': 0.20, 'FESTIVE15': 0.15 };
+  if (COUPONS[code]) {
+    const subtotal = Cart.total();
+    discountAmount = Math.round(subtotal * COUPONS[code]);
+    updateSummary();
+    showToast(`Coupon applied! You saved ${formatPrice(discountAmount)} 🎉`, 'success');
+  } else {
+    showToast('Invalid coupon code', 'error');
+  }
+}
+
+function proceedCheckout() {
+  checkoutVisible = !checkoutVisible;
+  document.getElementById('checkout-form').style.display = checkoutVisible ? 'block' : 'none';
+  if (checkoutVisible) {
+    document.getElementById('checkout-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+async function placeOrder() {
+  const name = document.getElementById('ch-name').value.trim();
+  const phone = document.getElementById('ch-phone').value.trim();
+  const address = document.getElementById('ch-address').value.trim();
+  const email = document.getElementById('ch-email').value.trim();
+  const notes = document.getElementById('ch-notes').value.trim();
+  const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value || 'cod';
+
+  if (!name || !phone || !address) {
+    showToast('Please fill in name, phone and address', 'error');
+    return;
+  }
+
+  const items = Cart.get();
+  if (items.length === 0) { showToast('Cart is empty', 'error'); return; }
+
+  const subtotal = Cart.total();
+  const shipping = subtotal >= 999 ? 0 : 79;
+  const total = subtotal - discountAmount + shipping;
+
+  const order = {
+    customer_name: name,
+    customer_email: email,
+    customer_phone: phone,
+    customer_address: address,
+    items: JSON.stringify(items),
+    total: total,
+    status: 'pending',
+    payment_method: paymentMethod,
+    notes: notes
+  };
+
+  const btn = document.querySelector('#checkout-form .btn-primary');
+  btn.textContent = 'Placing Order...';
+  btn.disabled = true;
+
+  try {
+    await createOrder(order);
+  } catch(e) {
+    console.log('Order API unavailable — using local fallback');
+  }
+
+  // If WhatsApp payment, open WhatsApp
+  if (paymentMethod === 'whatsapp') {
+    const msg = encodeURIComponent(`🛍️ New Order from Belimaa\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address}\n\nItems:\n${items.map(i=>`• ${i.name} x${i.qty} = ${formatPrice(i.price*i.qty)}`).join('\n')}\n\nTotal: ${formatPrice(total)}\n\nPlease confirm the order!`);
+  window.open(`https://wa.me/917209395894?text=${msg}`, '_blank');
+  }
+
+  Cart.clear();
+  const orderId = 'BLM-' + Date.now().toString().slice(-6).toUpperCase();
+  document.getElementById('order-id-display').textContent = `Order ID: ${orderId}`;
+  document.getElementById('order-success-modal').classList.add('open');
+  
+  btn.textContent = 'Place Order';
+  btn.disabled = false;
+}
+
+// Payment option active toggle
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.payment-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+});
+
+// Listen for cart changes
+window.addEventListener('cart-updated', renderCart);
+renderCart();
+</script>
+</body>
+</html>
+
+
+
+

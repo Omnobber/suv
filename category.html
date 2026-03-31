@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse Belimaa's curated collections — Temple, Festival, Home Decor, Embroidery and Metal Embroidery products.">
+  <title id="page-title">Category — Belimaa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cat-hero {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px 16px;
+    }
+    .cat-hero-icon {
+      display: none;
+    }
+    .cat-hero-title {
+      font-family:'Poppins',sans-serif;
+      font-size: clamp(1.5rem,3vw,2rem);
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 auto;
+      max-width: 1280px;
+    }
+    .cat-hero-sub {
+      margin: 6px auto 0;
+      color: var(--ink3);
+      font-size: 0.95rem;
+      max-width: 680px;
+    }
+    .cat-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .cat-sidebar-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .cat-sidebar-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--ink2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .cat-sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--ink2);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      margin-bottom: 3px;
+    }
+    .cat-sidebar-link:hover { background: var(--blue-pale); color: var(--blue-deep); }
+    .cat-sidebar-link.active { background: var(--gradient-btn); color: #fff; }
+    .cat-sidebar-link .count { margin-left: auto; font-size: 0.75rem; background: rgba(0,0,0,0.07); padding: 2px 7px; border-radius: 10px; }
+    .cat-layout {
+      display: flex;
+      gap: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 36px 24px;
+      align-items: flex-start;
+    }
+    .cat-content { flex: 1; min-width: 0; }
+    .price-range { display: flex; align-items: center; gap: 8px; }
+    .price-range input { width: 80px; padding: 6px 10px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--ink); }
+    .price-range span { color: var(--ink3); font-size: 0.85rem; }
+    @media(max-width:768px) {
+      .cat-layout { flex-direction: column; padding: 20px 16px; }
+      .cat-sidebar { width: 100%; }
+      .cat-hero { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">🪔</div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-brand"><span class="b">Beli</span><span class="g">maa</span></div>
+        <div class="nav-logo-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="category.html?cat=Temple" id="nav-temple">Temple</a>
+      <a href="category.html?cat=Festival" id="nav-festival">Festival</a>
+      <a href="category.html?cat=Home+Decor" id="nav-homedecor">Home Decor</a>
+      <a href="category.html?cat=Embroidery" id="nav-embroidery">Embroidery</a>
+      <a href="category.html?cat=Metal+Embroidery" id="nav-metal">Metal Embroidery</a>
+    </nav>
+    <div class="nav-right">
+      <form id="nav-search-form" class="nav-search">
+        <i class="fa-solid fa-search" style="color:rgba(255,255,255,0.7);font-size:0.8rem"></i>
+        <input type="search" id="nav-search-input" placeholder="Search products…">
+      </form>
+      <a href="cart.html" class="nav-icon-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="nav-badge cart-count-badge" style="display:none">0</span>
+      </a>
+      <a href="products.html" class="nav-cta">Shop All</a>
+      <button class="nav-hamburger" id="nav-hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="category.html?cat=Temple">🛕 Temple</a>
+    <a href="category.html?cat=Festival">🎉 Festival</a>
+    <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+    <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+    <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+  <div class='nav-slogan'>&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+</nav>
+
+<!-- CATEGORY HEADER -->
+<div class="cat-hero" id="cat-hero">
+  <div class="cat-hero-icon" id="cat-icon">🛕</div>
+  <h1 class="cat-hero-title" id="cat-hero-title">Temple Collection</h1>
+  <p class="cat-hero-sub" id="cat-hero-sub">Handcrafted sacred mandirs and prayer room décor</p>
+</div>
+
+<!-- BREADCRUMB -->
+<div style="background:#fff;border-bottom:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:12px 24px">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="products.html">Products</a>
+      <span class="breadcrumb-sep">/</span>
+      <span id="breadcrumb-cat">Temple</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="cat-layout">
+  <!-- SIDEBAR -->
+  <aside class="cat-sidebar">
+    <div class="cat-sidebar-card">
+      <div class="cat-sidebar-title">Collections</div>
+      <a href="category.html?cat=Temple" class="cat-sidebar-link" data-cat="Temple">
+        🛕 Temple <span class="count" id="count-temple">0</span>
+      </a>
+      <a href="category.html?cat=Festival" class="cat-sidebar-link" data-cat="Festival">
+        🎉 Festival <span class="count" id="count-festival">0</span>
+      </a>
+      <a href="category.html?cat=Home+Decor" class="cat-sidebar-link" data-cat="Home Decor">
+        🏠 Home Decor <span class="count" id="count-homedecor">0</span>
+      </a>
+      <a href="category.html?cat=Embroidery" class="cat-sidebar-link" data-cat="Embroidery">
+        🧵 Embroidery <span class="count" id="count-embroidery">0</span>
+      </a>
+      <a href="category.html?cat=Metal+Embroidery" class="cat-sidebar-link" data-cat="Metal Embroidery">
+        ✨ Metal Embroidery <span class="count" id="count-metal">0</span>
+      </a>
+    </div>
+    <div class="cat-sidebar-card">
+      <div class="cat-sidebar-title">Price Range</div>
+      <div class="price-range" style="flex-direction:column;gap:10px;align-items:stretch">
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="number" id="price-min" placeholder="Min ₹" min="0" value="">
+          <span>—</span>
+          <input type="number" id="price-max" placeholder="Max ₹" min="0" value="">
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="applyPriceFilter()">Apply Filter</button>
+        <button class="btn btn-sm" style="background:#f5f5f5;color:var(--ink3);border-radius:20px" onclick="clearPriceFilter()">Clear</button>
+      </div>
+    </div>
+    <div class="cat-sidebar-card">
+      <div class="cat-sidebar-title">Sort By</div>
+      <select class="form-control form-select" id="sort-select" onchange="sortProducts()">
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A–Z</option>
+        <option value="featured">Featured First</option>
+      </select>
+    </div>
+    <div class="cat-sidebar-card" style="background:var(--gradient-btn);border:none">
+      <div style="color:rgba(255,255,255,0.8);font-size:0.78rem;margin-bottom:8px">💬 Need Custom Order?</div>
+      <div style="color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:10px">Chat with us on WhatsApp</div>
+      <a href="https://wa.me/917209395894" target="_blank" style="background:#25d366;color:#fff;font-size:0.82rem;font-weight:700;padding:8px 14px;border-radius:16px;display:inline-flex;align-items:center;gap:6px">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <div class="cat-content">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <span id="result-count" style="font-weight:700;color:var(--ink);font-size:0.95rem">Loading...</span>
+        <span style="color:var(--ink3);font-size:0.88rem"> products found</span>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="filter-bar-search">
+          <i class="fa-solid fa-search" style="color:var(--ink3);font-size:0.8rem"></i>
+          <input type="search" id="cat-search" placeholder="Search in this category…" oninput="filterCatProducts()">
+        </div>
+        <button class="scroll-btn" onclick="setView('grid')" id="view-grid" title="Grid View">⊞</button>
+        <button class="scroll-btn" onclick="setView('list')" id="view-list" title="List View">☰</button>
+      </div>
+    </div>
+    <div class="products-grid" id="cat-products-grid">
+      <!-- products loaded here -->
+    </div>
+    <div id="no-results" class="empty-state" style="display:none">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-title">No products found</div>
+      <p class="empty-sub">Try adjusting filters or explore other categories.</p>
+      <a href="products.html" class="btn btn-primary btn-sm" style="margin-top:16px;display:inline-flex">Browse All</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><span class="footer-logo-mark">🪔</span><span class="footer-brand-name">Beli<span class="g">maa</span></span></div>
+        <div class="footer-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+        <p class="footer-desc">Premium cultural, spiritual and decorative handcrafted products. Made with love in India.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/belimaa0657/" class="footer-social-btn" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/belimaa0657" class="footer-social-btn" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/917209395894" class="footer-social-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Collections</h4>
+        <a href="category.html?cat=Temple">🛕 Temple</a>
+        <a href="category.html?cat=Festival">🎉 Festival</a>
+        <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+        <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+        <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">All Products</a>
+        <a href="cart.html">My Cart</a>
+      </div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone" style="color:var(--blue-light);font-size:0.85rem"></i>+91 90070 10316</div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope" style="color:var(--blue-light);font-size:0.85rem"></i>hello@belimaa.in</div>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot" style="color:var(--blue-light);font-size:0.85rem"></i>Jamshedpur, Jharkhand</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Belimaa. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-float">
+  <a href="https://wa.me/917209395894" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  <button class="cart-float-btn" id="cart-float-btn"><i class="fa-solid fa-cart-shopping"></i><span class="cart-float-count" style="display:none">0</span></button>
+</div>
+<div id="toast"></div>
+<script src="js/shared.js"></script>
+<script>
+const CAT_META = {
+  'Temple': { title:'Temple Collection', sub:'Handcrafted sacred mandirs and prayer room décor, crafted with precision and devotion.' },
+  'Festival': { title:'Festival Décor & Gifts', sub:'Celebrate every festival with handcrafted diyas, rangoli mats and festive décor.' },
+  'Home Decor': { title:'Home Decoration', sub:'Elevate your space with premium laser-cut wall art, mandala hangings and decoratives.' },
+  'Embroidery': { title:'Embroidery Collection', sub:'Traditional Indian Zari, Suzani and hand-embroidered cushion covers and pillow sets.' },
+  'Metal Embroidery': { title:'Metal Embroidery (Zardozi)', sub:'Royal Zardozi metallic threadwork panels, tapestries and collector art pieces.' }
+};
+const FALLBACK_PRODUCTS = {
+  'Temple': [
+    { id:'t1', name:'Wall-Mounted Mandir', category:'Temple', price:3499, original_price:4200, featured:true, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=bdWsVmLIi6eIpVwEkOwL7JB4pa0fRQTe62aTzwsrH4yzUSE2yGHt8ti%2F8%2BTziMN45IdhjkKmctH5ma2SVw0K1otaecy38Rb4I8jPoCnierH0cqeWCtkxqqTEf%2FOP2BeCcXUyLZE%3D&u2=lYuEqPxOvHALYqkG&width=2560' },
+    { id:'t2', name:'Premium Table Mandir', category:'Temple', price:4999, original_price:6000, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=tzF%2BoW9j9wuvpaX3qjGSFJwaNNFh8FTtNLzjSLsqCaUu3StD6ELUJwgdryTruEtjekXmCoT36gJkUXfK247Y0tumnw%3D%3D&u2=RZoKNLKIR1b4boKA&width=2560' },
+    { id:'t3', name:'CNC Laser Mandir', category:'Temple', price:5999, original_price:7200, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=1aowXfnTC%2FrR3YHN%2BhB2zG04vVo21C%2BtMXUw%2FKjiZ5wUGfP5NOPbqvFPFsn%2FdfgHnn9TIt5mAHNJ9afgKeFeSV0YORKVWkMB8plD7jWu1HqFP%2Fcx0hxzP8VqiGQ%2FGF78mWcly2s%3D&u2=chvq22IVpiDAvpS7&width=2560' },
+    { id:'t4', name:'Corner Mandir Shelf', category:'Temple', price:2799, original_price:3500, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=OPfVeCzzPyxGjBsZQPE%2F2hVg1GaFyzN%2F8t01mULGUOEyvP%2FqhGoHKixSzspxzUOAHo3P%2Fu5iKy6ZZGeqcnm9JoB%2FvlaA5eNbvr6wMdDyYfvLu0JG3Y6KVw%3D%3D&u2=cM1N5nPPJENGw43O&width=2560' },
+    { id:'t5', name:'Jali Prayer Panel', category:'Temple', price:2199, original_price:2800, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=UgZQiD7B%2BOHb0dVDz56qNW3y9Guf4AAg3OM7cwnQiNA3EwsX%2BA3AW2ul1Ozek8nh4WmfzxKivE%2B6GIQhJ3Pbd157N%2FYDeo%2BUPh3iyJ62o2r0xUph6vZF%2Br2R%2BEETiNIswY%2F%2FglY%3D&u2=YPafo4fP4mCjBziG&width=2560' }
+  ],
+  'Festival': [
+    { id:'f1', name:'Diwali Diya Collection', category:'Festival', price:699, original_price:899, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=D3UC9kZjMMsC96bLk2MuQFUkxAT9WQGLVaJThDPzpAnFesgpDxmUP8%2BkS9QiOu8Ydo%2Fe5RsUP42F8Nh0ljWiEtLZobyn2l2ithP4n6H%2BVF4vbOy1ZEnL&u2=EHLhz%2FRwTQGyyY1B&width=2560' },
+    { id:'f2', name:'Navratri Diya Set', category:'Festival', price:899, original_price:1100, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=vz06js61wrrf%2FdBS052hqw1%2FslpTqCbezOum7tBYgJPkONytzTZCty4fHWCPNrqythSeaOW2L5x3uBh0px5kqSKV%2BQ%3D%3D&u2=0VZUByVsY0xfrFtW&width=2560' },
+    { id:'f3', name:'Kundan Rangoli Mat', category:'Festival', price:1299, original_price:1599, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=31E1iRjAssnhGVH7TF5Py6NpE1M%2BOXYUyko1A4ZfI1lOYXlVXKQsCjg6lIcUKETC2IOTyZakAliJbwWE5snLZiQtHOXASUbNSdZe6e2Syy%2BtcqVwm3uVnvEsftupYW24YaHw6ZI%3D&u2=4WDzweMmEhlJTJfB&width=2560' },
+    { id:'f4', name:'Acrylic Diya Rangoli', category:'Festival', price:599, original_price:799, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=gkgieE4T7aOz2qsP3cDlkTf%2FSMNmy%2B%2Bjolm94RYgefpMnvtcbzVytz3YlmQ8rlJkXQ7L1m6s8o2k1o0es77vHPxx4CcnWW4uYY91xHGIHEVVj6VT3vZRTUS2KzPqdSZMBCMgUG4%3D&u2=apTC0butKibO%2BM0g&width=2560' }
+  ],
+  'Home Decor': [
+    { id:'h1', name:'Om Round Wall Decor', category:'Home Decor', price:799, original_price:999, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=S8hpxq2zMb4Vak7a9gJpx0N0y1HB%2BQPpDHsr7H6%2F7yFgT8WaJrdnk%2FY5q3FkZD4vzHlm5Urmaxp3%2BOVCLX5jwG4EZQ%3D%3D&u2=r8zDCJygSYGRxcOG&width=2560' },
+    { id:'h2', name:'Multilayer Wall Art', category:'Home Decor', price:2299, original_price:2800, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=KgdkrtW8niyor4YejJGVqjRsJYLhC5zC4kC3cROKGt2vr2qor11O55%2F966jEV5JiDoxPB2MWk3%2FfRJS0J5ICu%2BYbvg%3D%3D&u2=E6Z3Jr8vTaGQYwFA&width=2560' },
+    { id:'h3', name:'Mandala Wall Hanging', category:'Home Decor', price:1599, original_price:1999, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=14RkNDDccHrsBV3ruPNAl4tTT9BQA90cNCfhmx2NeLAs4Q4T156aLro8TuAPWZeEa%2BNoadiRpdeVRulad6zq%2BfbIlloC6Z%2BV0RNIvzm7gxSn&u2=QNs20PexSIbgeyik&width=2560' },
+    { id:'h4', name:'Peacock Wall Art', category:'Home Decor', price:1899, original_price:2400, active:true, image_url:'https://sspark.genspark.ai/cfimages?u1=NkdU%2BlG8c4qyNlSOOaaF5jk19uhYDuWtRN%2BCJlmqwkOuI9DK%2BsEHgQbed3Fw2%2FPv6IdedgzuO8FJcaddtu6FdqOSBw%3D%3D&u2=URpuGvwmuidk1tle&width=2560' }
+  ],
+  'Embroidery': [],
+  'Metal Embroidery': []
+};
+
+let currentCat = '';
+let allCatProducts = [];
+let filteredProducts = [];
+
+function setupCatPage(cat) {
+  currentCat = cat;
+  const meta = CAT_META[cat] || CAT_META['Temple'];
+  document.title = `${meta.title} — Belimaa`;
+  document.getElementById('page-title').textContent = `${meta.title} — Belimaa`;
+  document.getElementById('cat-hero-title').textContent = meta.title;
+  document.getElementById('cat-hero-sub').textContent = meta.sub;
+  document.getElementById('breadcrumb-cat').textContent = cat;
+
+  // Mark active nav link
+  const navMap = { 'Temple':'nav-temple','Festival':'nav-festival','Home Decor':'nav-homedecor','Embroidery':'nav-embroidery','Metal Embroidery':'nav-metal' };
+  Object.values(navMap).forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('active'); });
+  if(navMap[cat]) { const el = document.getElementById(navMap[cat]); if(el) el.classList.add('active'); }
+
+  // Sidebar active
+  document.querySelectorAll('.cat-sidebar-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.cat === cat);
+  });
+}
+
+async function loadCategoryProducts(cat) {
+  renderSkeleton('cat-products-grid', 6);
+  try {
+    const res = await getProducts({ limit: 100 });
+    const allProds = window.mergeBelimaaProducts
+      ? mergeBelimaaProducts((res && res.data) ? res.data : [])
+      : ((res && res.data && res.data.length) ? res.data : (window.BELIMAA_FALLBACK_PRODUCTS || []));
+    
+    // Update counts in sidebar
+    const catKeys = ['Temple','Festival','Home Decor','Embroidery','Metal Embroidery'];
+    const idMap = { 'Temple':'temple','Festival':'festival','Home Decor':'homedecor','Embroidery':'embroidery','Metal Embroidery':'metal' };
+    catKeys.forEach(c => {
+      const countEl = document.getElementById('count-' + idMap[c]);
+      if(countEl) countEl.textContent = allProds.filter(p => p.category === c).length;
+    });
+
+    allCatProducts = allProds.filter(p => p.category === cat && p.active !== false);
+
+    // Fallback to static data if API returns empty
+    if (allCatProducts.length === 0) {
+      allCatProducts = (window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(cat) : (FALLBACK_PRODUCTS[cat] || []));
+    }
+    
+    filteredProducts = [...allCatProducts];
+    renderFilteredProducts();
+  } catch(err) {
+    allCatProducts = window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(cat) : (FALLBACK_PRODUCTS[cat] || []);
+    filteredProducts = [...allCatProducts];
+    const catKeys = ['Temple','Festival','Home Decor','Embroidery','Metal Embroidery'];
+    const idMap = { 'Temple':'temple','Festival':'festival','Home Decor':'homedecor','Embroidery':'embroidery','Metal Embroidery':'metal' };
+    catKeys.forEach(c => {
+      const countEl = document.getElementById('count-' + idMap[c]);
+      if(countEl) countEl.textContent = (window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(c) : (FALLBACK_PRODUCTS[c] || [])).length;
+    });
+    renderFilteredProducts();
+  }
+}
+
+function renderFilteredProducts() {
+  const grid = document.getElementById('cat-products-grid');
+  const noRes = document.getElementById('no-results');
+  const count = document.getElementById('result-count');
+  count.textContent = filteredProducts.length;
+  if (filteredProducts.length === 0) {
+    grid.innerHTML = '';
+    noRes.style.display = 'block';
+  } else {
+    noRes.style.display = 'none';
+    renderProductGrid('cat-products-grid', filteredProducts);
+  }
+}
+
+function filterCatProducts() {
+  const q = document.getElementById('cat-search').value.toLowerCase();
+  const minPrice = parseFloat(document.getElementById('price-min').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('price-max').value) || Infinity;
+  
+  filteredProducts = allCatProducts.filter(p => {
+    const matchQ = !q || p.name.toLowerCase().includes(q) || (p.description||'').toLowerCase().includes(q);
+    const matchPrice = p.price >= minPrice && p.price <= maxPrice;
+    return matchQ && matchPrice;
+  });
+  sortProducts(false);
+}
+
+function applyPriceFilter() { filterCatProducts(); }
+function clearPriceFilter() {
+  document.getElementById('price-min').value = '';
+  document.getElementById('price-max').value = '';
+  filterCatProducts();
+}
+
+function sortProducts(rerender = true) {
+  const s = document.getElementById('sort-select').value;
+  if (s === 'price-asc') filteredProducts.sort((a,b) => a.price - b.price);
+  else if (s === 'price-desc') filteredProducts.sort((a,b) => b.price - a.price);
+  else if (s === 'name-asc') filteredProducts.sort((a,b) => a.name.localeCompare(b.name));
+  else if (s === 'featured') filteredProducts.sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
+  if (rerender) renderFilteredProducts();
+}
+
+function setView(type) {
+  const grid = document.getElementById('cat-products-grid');
+  if (type === 'list') {
+    grid.style.gridTemplateColumns = '1fr';
+    grid.querySelectorAll('.product-card').forEach(c => {
+      c.style.flexDirection = 'row';
+      c.querySelector('.product-card-img-wrap').style.width = '160px';
+      c.querySelector('.product-card-img-wrap').style.flexShrink = '0';
+      c.querySelector('.product-card-img-wrap').style.aspectRatio = '1';
+    });
+  } else {
+    grid.style.gridTemplateColumns = '';
+    grid.querySelectorAll('.product-card').forEach(c => {
+      c.style.flexDirection = '';
+      c.querySelector('.product-card-img-wrap').style.width = '';
+      c.querySelector('.product-card-img-wrap').style.flexShrink = '';
+      c.querySelector('.product-card-img-wrap').style.aspectRatio = '';
+    });
+  }
+}
+
+// Init
+const cat = decodeURIComponent(getParam('cat')) || 'Temple';
+setupCatPage(cat);
+loadCategoryProducts(cat);
+</script>
+</body>
+</html>
+
+
+
+

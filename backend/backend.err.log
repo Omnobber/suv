@@ -1,0 +1,29 @@
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (E:\suv\node_modules\express\lib\application.js:635:24)
+    at file:///E:/suv/backend/src/server.js:52:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1944:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v20.20.2
+npm error Lifecycle script `start` failed with error:
+npm error code 1
+npm error path E:\suv\backend
+npm error workspace belimaa-backend@1.0.0
+npm error location E:\suv\backend
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c node src/server.js

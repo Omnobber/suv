@@ -1,0 +1,8 @@
+node_modules
+dist
+.npm-cache
+.syntax-check
+.env
+.env.local
+backend/uploads/*
+!backend/uploads/.gitkeep

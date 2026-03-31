@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Product — Belimaa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .img-zoom-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .img-zoom-overlay.open { display: flex; }
+    .img-zoom-overlay img { max-width: 90vw; max-height: 90vh; border-radius: 14px; }
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: var(--blue-pale);
+      color: var(--blue-deep);
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 2px;
+    }
+    .delivery-info {
+      background: var(--green-pale);
+      border: 1px solid var(--green-light);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: var(--green-deep);
+    }
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 12px 22px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink3);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .tab-btn.active { color: var(--blue-deep); border-color: var(--blue-deep); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .review-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .review-item:last-child { border-bottom: none; }
+    .review-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .review-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--gradient-btn);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 700; font-size: 0.88rem; }
+    .review-date { font-size: 0.75rem; color: var(--ink3); }
+    .review-text { font-size: 0.88rem; color: var(--ink2); line-height: 1.65; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">🪔</div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-brand"><span class="b">Beli</span><span class="g">maa</span></div>
+        <div class="nav-logo-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="category.html?cat=Temple">Temple</a>
+      <a href="category.html?cat=Festival">Festival</a>
+      <a href="category.html?cat=Home+Decor">Home Decor</a>
+      <a href="category.html?cat=Embroidery">Embroidery</a>
+      <a href="category.html?cat=Metal+Embroidery">Metal Embroidery</a>
+    </nav>
+    <div class="nav-right">
+      <a href="cart.html" class="nav-icon-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="nav-badge cart-count-badge" style="display:none">0</span>
+      </a>
+      <a href="products.html" class="nav-cta">Shop All</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="category.html?cat=Temple">🛕 Temple</a>
+    <a href="category.html?cat=Festival">🎉 Festival</a>
+    <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+    <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+    <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+  <div class='nav-slogan'>&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+</nav>
+
+<!-- LOADING STATE -->
+<div id="loading-state" class="loader-wrap" style="min-height:50vh">
+  <div class="loader"></div>
+</div>
+
+<!-- PRODUCT DETAIL (hidden initially) -->
+<div id="product-section" style="display:none">
+  <!-- BREADCRUMB -->
+  <div style="background:#fff;border-bottom:1px solid var(--border)">
+    <div style="max-width:1280px;margin:0 auto;padding:12px 24px">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="products.html">Products</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="#" id="bc-cat"></a>
+        <span class="breadcrumb-sep">/</span>
+        <span id="bc-name"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT MAIN -->
+  <div class="product-detail-wrap">
+    <div class="product-detail-grid">
+      <!-- IMAGES -->
+      <div class="product-detail-images">
+        <img id="main-img" class="product-main-img" src="" alt="" onclick="openZoom(this.src)">
+        <div class="product-thumbs" id="product-thumbs"></div>
+      </div>
+
+      <!-- INFO -->
+      <div class="product-detail-info">
+        <div class="product-detail-cat" id="prod-category"></div>
+        <h1 class="product-detail-title" id="prod-name"></h1>
+
+        <div class="product-detail-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">4.9 (128 reviews)</span>
+          <span style="color:var(--green-deep);font-size:0.82rem;font-weight:600">✓ In Stock</span>
+        </div>
+
+        <div class="product-detail-price">
+          <span class="detail-price-current" id="prod-price"></span>
+          <span class="detail-price-original" id="prod-orig-price"></span>
+          <span class="detail-price-off" id="prod-discount" style="display:none"></span>
+        </div>
+
+        <p class="product-detail-desc" id="prod-desc"></p>
+
+        <!-- QUANTITY -->
+        <div class="product-detail-qty">
+          <span class="qty-label">Quantity:</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <input type="number" class="qty-num" id="qty-input" value="1" min="1" max="99">
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="product-detail-actions">
+          <button class="btn btn-primary btn-lg" id="add-to-cart-btn" onclick="handleAddToCart()">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+          <button class="btn btn-outline btn-lg" id="wishlist-btn" onclick="handleWishlist()" title="Wishlist">
+            🤍
+          </button>
+        </div>
+        <button class="btn btn-full" style="background:#25d366;color:#fff;margin-bottom:14px;border-radius:14px" onclick="whatsAppOrder()">
+          <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+        </button>
+
+        <!-- META -->
+        <div class="product-meta">
+          <span><strong>Category:</strong> <span id="meta-cat"></span></span>
+          <span id="meta-sub-row" style="display:none"><strong>Sub-category:</strong> <span id="meta-sub"></span></span>
+          <span><strong>Shipping:</strong> Free on orders above ₹999</span>
+          <span><strong>Return Policy:</strong> 7-day easy return</span>
+        </div>
+
+        <!-- Tags -->
+        <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:0" id="prod-tags"></div>
+
+        <!-- Delivery info -->
+        <div class="delivery-info">
+          <span style="font-size:1.3rem">🚚</span>
+          <div>
+            <strong>Express Delivery</strong> — Dispatched within 3–5 working days.<br>
+            <span style="font-size:0.82rem;color:var(--green-deep)">Free shipping on orders above ₹999.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS: Description / Details / Reviews -->
+    <div style="margin-top:56px">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('desc-tab',this)">Description</button>
+        <button class="tab-btn" onclick="showTab('details-tab',this)">Product Details</button>
+        <button class="tab-btn" onclick="showTab('reviews-tab',this)">Reviews (128)</button>
+      </div>
+
+      <div id="desc-tab" class="tab-pane active">
+        <p style="color:var(--ink2);line-height:1.8;font-size:0.95rem" id="tab-desc"></p>
+        <ul style="margin-top:16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px" id="tab-features"></ul>
+      </div>
+
+      <div id="details-tab" class="tab-pane">
+        <table style="width:100%;max-width:500px;border-collapse:collapse" id="specs-table">
+          <tbody id="specs-body"></tbody>
+        </table>
+      </div>
+
+      <div id="reviews-tab" class="tab-pane">
+        <div style="display:flex;align-items:center;gap:24px;margin-bottom:28px;padding:20px;background:var(--blue-pale);border-radius:var(--radius-md)">
+          <div style="text-align:center">
+            <div style="font-size:3rem;font-weight:900;color:var(--blue-deep)">4.9</div>
+            <div class="stars" style="font-size:1.1rem">★★★★★</div>
+            <div style="font-size:0.78rem;color:var(--ink3);margin-top:4px">128 reviews</div>
+          </div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-size:0.8rem;color:var(--ink2);width:24px">5★</span>
+              <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                <div style="width:85%;height:100%;background:var(--blue-mid);border-radius:4px"></div>
+              </div>
+              <span style="font-size:0.75rem;color:var(--ink3);width:28px">85%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-size:0.8rem;color:var(--ink2);width:24px">4★</span>
+              <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                <div style="width:10%;height:100%;background:var(--blue-light);border-radius:4px"></div>
+              </div>
+              <span style="font-size:0.75rem;color:var(--ink3);width:28px">10%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:0.8rem;color:var(--ink2);width:24px">3★</span>
+              <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+                <div style="width:5%;height:100%;background:var(--green-light);border-radius:4px"></div>
+              </div>
+              <span style="font-size:0.75rem;color:var(--ink3);width:28px">5%</span>
+            </div>
+          </div>
+        </div>
+        <div id="reviews-list">
+          <div class="review-item">
+            <div class="review-meta">
+              <div class="review-avatar">P</div>
+              <div><div class="review-name">Priya Sharma</div><div class="review-date">December 2024</div></div>
+              <span class="stars" style="margin-left:auto">★★★★★</span>
+            </div>
+            <p class="review-text">Absolutely stunning quality! The craftsmanship is exceptional and it arrived beautifully packaged. Exactly as described. Will definitely order again from Belimaa.</p>
+          </div>
+          <div class="review-item">
+            <div class="review-meta">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#2a9e6a,#1b5e20)">R</div>
+              <div><div class="review-name">Rajesh Kumar</div><div class="review-date">November 2024</div></div>
+              <span class="stars" style="margin-left:auto">★★★★★</span>
+            </div>
+            <p class="review-text">The product exceeded my expectations. Premium quality, beautiful design. My family loves it. The packaging was very secure and it arrived in perfect condition.</p>
+          </div>
+          <div class="review-item">
+            <div class="review-meta">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#6a1b9a,#2a7fba)">S</div>
+              <div><div class="review-name">Sunita Patel</div><div class="review-date">October 2024</div></div>
+              <span class="stars" style="margin-left:auto">★★★★★</span>
+            </div>
+            <p class="review-text">Bought this as a Diwali gift for my mother-in-law and she absolutely loved it. The quality is premium and the detailing is very intricate. Highly recommended!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELATED PRODUCTS -->
+    <div style="margin-top:72px">
+      <div class="section-header" style="margin-bottom:28px">
+        <div>
+          <span class="section-badge">You May Also Like</span>
+          <h2 class="section-title">Related Products</h2>
+          <div class="divider"></div>
+        </div>
+        <a href="products.html" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="products-grid" id="related-products"></div>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE ZOOM OVERLAY -->
+<div class="img-zoom-overlay" id="img-zoom" onclick="closeZoom()">
+  <img id="zoom-img" src="" alt="Zoom">
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><span class="footer-logo-mark">🪔</span><span class="footer-brand-name">Beli<span class="g">maa</span></span></div>
+        <div class="footer-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+        <p class="footer-desc">Premium cultural, spiritual and decorative handcrafted products. Made with love in India.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/belimaa0657/" class="footer-social-btn" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/belimaa0657" class="footer-social-btn" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/917209395894" class="footer-social-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Collections</h4>
+        <a href="category.html?cat=Temple">🛕 Temple</a>
+        <a href="category.html?cat=Festival">🎉 Festival</a>
+        <a href="category.html?cat=Home+Decor">🏠 Home Decor</a>
+        <a href="category.html?cat=Embroidery">🧵 Embroidery</a>
+        <a href="category.html?cat=Metal+Embroidery">✨ Metal Embroidery</a>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4>
+        <a href="index.html">Home</a><a href="products.html">All Products</a><a href="cart.html">My Cart</a>
+      </div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone" style="color:var(--blue-light);font-size:0.85rem"></i>+91 90070 10316</div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope" style="color:var(--blue-light);font-size:0.85rem"></i>hello@belimaa.in</div>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot" style="color:var(--blue-light);font-size:0.85rem"></i>Jamshedpur, Jharkhand</div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 Belimaa. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="cart-float">
+  <a href="https://wa.me/917209395894" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  <button class="cart-float-btn" id="cart-float-btn"><i class="fa-solid fa-cart-shopping"></i><span class="cart-float-count" style="display:none">0</span></button>
+</div>
+<div id="toast"></div>
+<script src="js/shared.js"></script>
+<script>
+const FALLBACK_ALL = [
+  { id:'t1', name:'Wall-Mounted Mandir', category:'Temple', price:3499, original_price:4200, featured:true, active:true, description:'Premium handcrafted wall-mounted mandir with intricate laser-cut jali design. LED light compatible. White lacquer finish. Perfect for home prayer room.', subcategory:'Wall Mandir', tags:['mandir','temple','laser','premium'], image_url:'https://sspark.genspark.ai/cfimages?u1=bdWsVmLIi6eIpVwEkOwL7JB4pa0fRQTe62aTzwsrH4yzUSE2yGHt8ti%2F8%2BTziMN45IdhjkKmctH5ma2SVw0K1otaecy38Rb4I8jPoCnierH0cqeWCtkxqqTEf%2FOP2BeCcXUyLZE%3D&u2=lYuEqPxOvHALYqkG&width=2560' },
+  { id:'t2', name:'Premium Table Mandir', category:'Temple', price:4999, original_price:6000, active:true, description:'Elegant teak wood table mandir with double door, traditional carvings, and gold accessories. Suitable for table or floor.', image_url:'https://sspark.genspark.ai/cfimages?u1=tzF%2BoW9j9wuvpaX3qjGSFJwaNNFh8FTtNLzjSLsqCaUu3StD6ELUJwgdryTruEtjekXmCoT36gJkUXfK247Y0tumnw%3D%3D&u2=RZoKNLKIR1b4boKA&width=2560' },
+  { id:'t3', name:'CNC Laser Mandir', category:'Temple', price:5999, original_price:7200, active:true, description:'Precision CNC laser-cut mandir with geometric patterns, arched doorways and multi-tier platforms. Premium finish.', image_url:'https://sspark.genspark.ai/cfimages?u1=1aowXfnTC%2FrR3YHN%2BhB2zG04vVo21C%2BtMXUw%2FKjiZ5wUGfP5NOPbqvFPFsn%2FdfgHnn9TIt5mAHNJ9afgKeFeSV0YORKVWkMB8plD7jWu1HqFP%2Fcx0hxzP8VqiGQ%2FGF78mWcly2s%3D&u2=chvq22IVpiDAvpS7&width=2560' },
+  { id:'f1', name:'Diwali Diya Collection', category:'Festival', price:699, original_price:899, active:true, description:'Set of 12 handmade terracotta diyas in vibrant colors with rangoli design plate. Perfect for Diwali gifting.', image_url:'https://sspark.genspark.ai/cfimages?u1=D3UC9kZjMMsC96bLk2MuQFUkxAT9WQGLVaJThDPzpAnFesgpDxmUP8%2BkS9QiOu8Ydo%2Fe5RsUP42F8Nh0ljWiEtLZobyn2l2ithP4n6H%2BVF4vbOy1ZEnL&u2=EHLhz%2FRwTQGyyY1B&width=2560' },
+  { id:'f2', name:'Navratri Diya Set', category:'Festival', price:899, original_price:1100, active:true, description:'Premium set of 6 multicolored Navratri diyas, handpainted in terracotta. Ideal for festival decoration.', image_url:'https://sspark.genspark.ai/cfimages?u1=vz06js61wrrf%2FdBS052hqw1%2FslpTqCbezOum7tBYgJPkONytzTZCty4fHWCPNrqythSeaOW2L5x3uBh0px5kqSKV%2BQ%3D%3D&u2=0VZUByVsY0xfrFtW&width=2560' },
+  { id:'h1', name:'Om Round Wall Decor', category:'Home Decor', price:799, original_price:999, active:true, description:'Golden Om round wooden wall decor, 20x20cm. Laser-cut MDF with premium golden finish.', image_url:'https://sspark.genspark.ai/cfimages?u1=S8hpxq2zMb4Vak7a9gJpx0N0y1HB%2BQPpDHsr7H6%2F7yFgT8WaJrdnk%2FY5q3FkZD4vzHlm5Urmaxp3%2BOVCLX5jwG4EZQ%3D%3D&u2=r8zDCJygSYGRxcOG&width=2560' },
+  { id:'h2', name:'Multilayer Wall Art', category:'Home Decor', price:2299, original_price:2800, active:true, description:'3D multilayered laser-cut wall art. Multiple shadow effect layers. Premium home decoration.', image_url:'https://sspark.genspark.ai/cfimages?u1=KgdkrtW8niyor4YejJGVqjRsJYLhC5zC4kC3cROKGt2vr2qor11O55%2F966jEV5JiDoxPB2MWk3%2FfRJS0J5ICu%2BYbvg%3D%3D&u2=E6Z3Jr8vTaGQYwFA&width=2560' },
+];
+
+let currentProduct = null;
+
+async function loadProduct() {
+  const id = getParam('id');
+  if (!id) { window.location.href = 'products.html'; return; }
+
+  try {
+    let product = null;
+    try {
+      product = await getProductById(id);
+    } catch(e) {}
+    if (!product) {
+      const fallbackList = window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL;
+      product = fallbackList.find(p => p.id === id);
+    }
+    if (!product) {
+      product = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL)[0];
+    }
+    currentProduct = product;
+    renderProduct(product);
+    loadRelated(product.category, product.id);
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('product-section').style.display = 'block';
+  } catch(err) {
+    document.getElementById('loading-state').innerHTML = `<div class="empty-state"><div class="empty-icon">😕</div><div class="empty-title">Product not found</div><a href="products.html" class="btn btn-primary btn-sm" style="margin-top:16px;display:inline-flex">Browse Products</a></div>`;
+  }
+}
+
+function renderProduct(p) {
+  document.title = `${p.name} — Belimaa`;
+  document.getElementById('page-title').textContent = `${p.name} — Belimaa`;
+  
+  // Main image
+  const mainImg = document.getElementById('main-img');
+  mainImg.src = normalizeAssetPath(p.image_url) || 'https://placehold.co/600x600/e8f4fb/2a7fba?text=Belimaa';
+  mainImg.alt = p.name;
+  
+  // Thumbnails (same image + 2 alternate placeholders to show UI)
+  const normalizedImage = normalizeAssetPath(p.image_url);
+  const thumbs = [normalizedImage, normalizedImage, normalizedImage].filter(Boolean).slice(0, 4);
+  document.getElementById('product-thumbs').innerHTML = thumbs.map((img, i) => `
+    <div class="product-thumb ${i===0?'active':''}" onclick="setMainImg(this,'${img}')">
+      <img src="${img}" alt="Thumb ${i+1}" loading="lazy" onerror="this.src='https://placehold.co/70x70/e8f4fb/2a7fba?text=B'">
+    </div>
+  `).join('');
+
+  // Breadcrumb
+  document.getElementById('bc-cat').textContent = p.category || '';
+  document.getElementById('bc-cat').href = `category.html?cat=${encodeURIComponent(p.category)}`;
+  document.getElementById('bc-name').textContent = p.name;
+
+  // Info
+  document.getElementById('prod-category').textContent = `${p.category || ''}`;
+  document.getElementById('prod-name').textContent = p.name;
+  document.getElementById('prod-price').textContent = formatPrice(p.price);
+  
+  const disc = discountPct(p.original_price, p.price);
+  if (p.original_price && p.original_price > p.price) {
+    document.getElementById('prod-orig-price').textContent = formatPrice(p.original_price);
+    if (disc >= 5) {
+      document.getElementById('prod-discount').style.display = 'inline';
+      document.getElementById('prod-discount').textContent = `${disc}% off`;
+    }
+  }
+
+  document.getElementById('prod-desc').textContent = p.description || 'Premium handcrafted product by Belimaa. Customizable design, perfect for gifting or elevating your décor.';
+  document.getElementById('meta-cat').textContent = p.category || '';
+  
+  if (p.subcategory) {
+    document.getElementById('meta-sub-row').style.display = 'flex';
+    document.getElementById('meta-sub').textContent = p.subcategory;
+  }
+
+  // Tags
+  const tagsArr = Array.isArray(p.tags) ? p.tags : (typeof p.tags === 'string' ? p.tags.split(',').map(t=>t.trim()) : []);
+  document.getElementById('prod-tags').innerHTML = tagsArr.map(t => `<span class="product-tag">${t}</span>`).join('');
+
+  // Tab content
+  document.getElementById('tab-desc').textContent = p.description || 'Premium handcrafted product by Belimaa. Each piece is made with care, precision, and the finest materials.';
+  document.getElementById('tab-features').innerHTML = [
+    '✓ Premium quality handcrafted product',
+    '✓ Customizable on request',
+    '✓ Suitable for gifting and home decoration',
+    '✓ Secure packaging for safe delivery',
+    '✓ 7-day easy return policy'
+  ].map(f => `<li style="font-size:0.88rem;color:var(--ink2);display:flex;align-items:center;gap:8px"><span style="color:var(--green-deep)">${f.split(' ')[0]}</span>${f.slice(2)}</li>`).join('');
+
+  // Specs
+  const specs = [
+    ['Brand', 'Belimaa'],
+    ['Category', p.category || '—'],
+    ['Sub-Category', p.subcategory || '—'],
+    ['Finish', 'Premium / Customizable'],
+    ['Material', 'MDF / Teak / Velvet / Cotton'],
+    ['SKU', p.id || '—'],
+    ['Shipping', 'Free above ₹999'],
+    ['Return', '7 days']
+  ];
+  document.getElementById('specs-body').innerHTML = specs.map(([k,v]) => `
+    <tr>
+      <td style="padding:10px 14px;background:#f9fafb;font-weight:600;font-size:0.83rem;color:var(--ink2);border:1px solid var(--border);width:40%">${k}</td>
+      <td style="padding:10px 14px;font-size:0.88rem;color:var(--ink);border:1px solid var(--border)">${v}</td>
+    </tr>
+  `).join('');
+
+  // Wishlist state
+  const wb = document.getElementById('wishlist-btn');
+  if (Wishlist.has(p.id)) wb.textContent = '❤️';
+}
+
+function setMainImg(thumb, url) {
+  document.getElementById('main-img').src = url;
+  document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function changeQty(delta) {
+  const inp = document.getElementById('qty-input');
+  const cur = parseInt(inp.value) || 1;
+  inp.value = Math.max(1, Math.min(99, cur + delta));
+}
+
+function handleAddToCart() {
+  if (!currentProduct) return;
+  const qty = parseInt(document.getElementById('qty-input').value) || 1;
+  Cart.add(currentProduct, qty);
+  const btn = document.getElementById('add-to-cart-btn');
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Added to Cart!';
+  btn.style.background = '#2a9e6a';
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Add to Cart';
+    btn.style.background = '';
+  }, 1800);
+}
+
+function handleWishlist() {
+  if (!currentProduct) return;
+  const active = Wishlist.toggle(currentProduct);
+  document.getElementById('wishlist-btn').textContent = active ? '❤️' : '🤍';
+}
+
+function whatsAppOrder() {
+  if (!currentProduct) return;
+  const qty = document.getElementById('qty-input').value || 1;
+  const msg = encodeURIComponent(`Hi Belimaa! I'd like to order:\n\nProduct: ${currentProduct.name}\nCategory: ${currentProduct.category}\nPrice: ${formatPrice(currentProduct.price)}\nQuantity: ${qty}\n\nPlease confirm availability.`);
+  window.open(`https://wa.me/917209395894?text=${msg}`, '_blank');
+}
+
+async function loadRelated(category, excludeId) {
+  try {
+    const res = await getProducts({ limit: 100 });
+    let prods = window.mergeBelimaaProducts
+      ? mergeBelimaaProducts((res && res.data) ? res.data : []).filter(p => p.category === category && p.id !== excludeId)
+      : ((res && res.data) ? res.data.filter(p => p.category === category && p.id !== excludeId) : []);
+    if (prods.length === 0) {
+      prods = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL).filter(p => p.category === category && p.id !== excludeId);
+    }
+    renderProductGrid('related-products', prods.slice(0, 4));
+  } catch(e) {
+    const prods = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL).filter(p => p.category === category && p.id !== excludeId).slice(0, 4);
+    renderProductGrid('related-products', prods);
+  }
+}
+
+function showTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+function openZoom(src) {
+  document.getElementById('zoom-img').src = src;
+  document.getElementById('img-zoom').classList.add('open');
+}
+function closeZoom() {
+  document.getElementById('img-zoom').classList.remove('open');
+}
+
+loadProduct();
+</script>
+</body>
+</html>
+
+
+
+

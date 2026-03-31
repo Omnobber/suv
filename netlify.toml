@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/img/*"
+  to = "/images/:splat"
+  status = 301
