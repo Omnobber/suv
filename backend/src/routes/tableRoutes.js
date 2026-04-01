@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { adminOnly, protect } from '../middleware/auth.js';
 import {
   createTableRecord,
   deleteTableRecord,
@@ -23,6 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const router = express.Router();
 
+router.use(protect, adminOnly);
 router.get('/:table', listTable);
 router.get('/:table/:id', getTableRecord);
 router.post('/:table', upload.single('image'), createTableRecord);

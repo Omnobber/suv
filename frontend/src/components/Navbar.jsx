@@ -11,12 +11,18 @@ export default function Navbar({ activeCategory, onFilterChange }) {
       <div className="shipping-banner">Free shipping on orders above ?999+</div>
       <header className="navbar">
         <Link to="/" className="logo-link"><Logo /></Link>
-        <nav className="nav-pills">
-          <button className={!activeCategory ? 'active' : ''} onClick={() => onFilterChange('')}>All Products</button>
-          {categories.map((category) => (
-            <button key={category} className={activeCategory === category ? 'active' : ''} onClick={() => onFilterChange(category)}>{category}</button>
-          ))}
-        </nav>
+        <div className="nav-main">
+          <div className="header-links-row">
+            <a href="#support" className="support-link">Help & Support</a>
+            <Link to="/track-order" className="support-link">Track Order</Link>
+          </div>
+          <nav className="nav-pills">
+            <button className={!activeCategory ? 'active' : ''} onClick={() => onFilterChange('')}>All Products</button>
+            {categories.map((category) => (
+              <button key={category} className={activeCategory === category ? 'active' : ''} onClick={() => onFilterChange(category)}>{category}</button>
+            ))}
+          </nav>
+        </div>
         <Link to="/checkout" className="cart-indicator">
           <span>Cart</span>
           <strong>{count}</strong>

@@ -19,6 +19,7 @@ function authResponse(user) {
       email: user.email,
       phone: user.phone,
       role: user.role,
+      tokenVersion: user.tokenVersion,
       authProvider: user.authProvider,
       phoneVerified: !!user.phoneVerified
     },
@@ -161,7 +162,7 @@ export async function socialAuthStatus(req, res) {
 }
 
 export async function me(req, res) {
-  const user = await User.findById(req.user.id).select('_id name email phone role authProvider phoneVerified createdAt');
+  const user = await User.findById(req.user.id).select('_id name email phone role tokenVersion authProvider phoneVerified createdAt');
   if (!user) return res.status(404).json({ message: 'User not found.' });
 
   res.json({
@@ -171,6 +172,7 @@ export async function me(req, res) {
       email: user.email,
       phone: user.phone,
       role: user.role,
+      tokenVersion: user.tokenVersion,
       authProvider: user.authProvider,
       phoneVerified: !!user.phoneVerified,
       createdAt: user.createdAt

@@ -3,203 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Belimaa</title>
-  <meta name="description" content="Simple Belimaa login and signup for orders, saved cart, and faster checkout.">
+  <title>Belimaa Login</title>
+  <meta name="description" content="Login or sign up to Belimaa with a simple mobile and password form.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      color: #431407;
+      font-family: var(--font-body);
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(234, 88, 12, 0.12), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(154, 52, 18, 0.12), transparent 34%),
-        #fff7ed;
+        radial-gradient(circle at top left, rgba(42,127,186,0.12), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(79,181,16,0.10), transparent 30%),
+        var(--surface);
     }
 
     .login-page {
       min-height: 100vh;
-      padding: 18px;
       display: grid;
-      align-items: center;
-    }
-
-    .login-wrap {
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .login-topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .login-brand {
-      text-decoration: none;
-      color: #7c2d12;
-    }
-
-    .login-brand-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.55rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .login-brand-sub {
-      margin-top: 6px;
-      font-size: 0.78rem;
-      color: #9a3412;
-    }
-
-    .login-back {
-      text-decoration: none;
-      color: #9a3412;
-      font-weight: 700;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(154, 52, 18, 0.14);
-      border-radius: 999px;
-      padding: 10px 14px;
+      place-items: center;
+      padding: 20px;
     }
 
     .login-shell {
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(234, 88, 12, 0.12);
-      border-radius: 28px;
-      box-shadow: 0 24px 70px rgba(124, 45, 18, 0.12);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
-    }
-
-    .login-aside {
-      background: linear-gradient(160deg, rgba(194, 65, 12, 0.96), rgba(124, 45, 18, 0.94));
-      color: #fff7ed;
-      padding: 28px;
-      display: grid;
-      align-content: space-between;
-      gap: 18px;
-    }
-
-    .login-aside-badge {
-      display: inline-flex;
-      width: fit-content;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.14);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .login-aside h1 {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
-      line-height: 1.08;
-    }
-
-    .login-aside p {
-      margin: 0;
-      color: rgba(255,247,237,0.84);
-      line-height: 1.7;
-      font-size: 0.92rem;
-    }
-
-    .login-aside-points {
-      display: grid;
-      gap: 10px;
-    }
-
-    .login-aside-points div {
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.86rem;
-      line-height: 1.55;
-    }
-
-    .login-main {
-      padding: 30px;
-      display: grid;
-      align-content: center;
-      gap: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,251,235,0.96));
-    }
-
-    .login-card {
-      max-width: 420px;
       width: 100%;
-      margin: 0 auto;
-      display: grid;
-      gap: 14px;
+      max-width: 430px;
     }
 
-    .login-head h2 {
-      margin: 0 0 4px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.9rem;
-      color: #7c2d12;
-    }
-
-    .login-head p {
-      margin: 0;
-      color: #9a3412;
-      line-height: 1.65;
+    .login-back {
+      display: inline-flex;
+      margin-bottom: 14px;
+      text-decoration: none;
+      color: var(--blue-deep);
+      font-weight: 700;
       font-size: 0.92rem;
     }
 
-    .login-tabs,
-    .login-methods {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+    .login-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-md);
     }
 
-    .login-tab,
-    .login-method {
+    .login-brand {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .login-brand .nav-logo {
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .login-brand .nav-logo-text {
+      align-items: center;
+    }
+
+    .login-brand .nav-logo-tagline {
+      color: var(--ink3);
+    }
+
+    .login-brand p {
+      margin: 8px 0 0;
+      color: var(--ink2);
+      font-size: 0.9rem;
+    }
+
+    .login-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .login-tab {
       min-height: 46px;
-      border-radius: 14px;
-      border: 1px solid rgba(194, 65, 12, 0.14);
+      border: 1px solid var(--border);
       background: #fff;
-      color: #7c2d12;
+      color: var(--blue-deep);
+      border-radius: var(--radius-sm);
       font-weight: 700;
       cursor: pointer;
     }
 
-    .login-tab.active,
-    .login-method.active {
-      background: linear-gradient(135deg, #ea580c, #c2410c);
+    .login-tab.active {
+      background: var(--gradient-btn);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 12px 24px rgba(194, 65, 12, 0.18);
     }
 
     .login-note {
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(255, 237, 213, 0.78);
-      border: 1px solid rgba(234, 88, 12, 0.12);
-      color: #9a3412;
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      color: var(--ink2);
       font-size: 0.84rem;
       line-height: 1.55;
+      margin-bottom: 16px;
     }
 
     .login-form {
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
 
     .login-field {
@@ -210,193 +122,105 @@
     .login-field label {
       font-size: 0.86rem;
       font-weight: 700;
-      color: #7c2d12;
+      color: var(--ink);
     }
 
     .login-field input {
       min-height: 48px;
-      border-radius: 14px;
-      border: 1px solid rgba(194, 65, 12, 0.14);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
       padding: 0 14px;
       font-size: 0.95rem;
-      background: rgba(255,255,255,0.96);
-      color: #431407;
+      background: #fff;
+      color: var(--ink);
     }
 
     .login-submit {
       min-height: 50px;
       border: none;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #ea580c, #c2410c);
+      border-radius: var(--radius-sm);
+      background: var(--gradient-btn);
       color: #fff;
       font-weight: 800;
       font-size: 0.98rem;
       cursor: pointer;
-      box-shadow: 0 16px 30px rgba(194, 65, 12, 0.2);
+      box-shadow: 0 4px 18px rgba(42,127,186,0.35);
     }
 
-    .login-switch {
+    .login-links {
+      margin-top: 14px;
+      text-align: center;
       font-size: 0.9rem;
-      color: #9a3412;
+      color: var(--ink2);
     }
 
-    .login-switch button {
+    .login-links button {
       border: none;
       background: none;
-      color: #c2410c;
+      color: var(--blue-deep);
       font-weight: 800;
       cursor: pointer;
       padding: 0;
     }
 
-    .login-dev-otp {
-      font-size: 0.82rem;
-      color: #9a3412;
-      font-weight: 700;
-    }
-
-    .login-mini-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.82rem;
-      color: #9a3412;
-    }
-
-    .login-mini-links span {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 860px) {
-      .login-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .login-aside {
-        padding: 24px;
-      }
-
-      .login-main {
-        padding: 24px 18px;
-      }
-    }
-
     @media (max-width: 520px) {
       .login-page {
-        padding: 12px;
+        padding: 14px;
       }
 
-      .login-topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .login-tabs,
-      .login-methods {
-        grid-template-columns: 1fr;
-      }
-
-      .login-aside h1 {
-        font-size: 1.7rem;
-      }
-
-      .login-head h2 {
-        font-size: 1.55rem;
-      }
-
-      .login-shell {
-        border-radius: 22px;
+      .login-box {
+        padding: 24px 18px;
+        border-radius: var(--radius-md);
       }
     }
   </style>
 </head>
 <body>
   <div class="login-page">
-    <div class="login-wrap">
-      <div class="login-topbar">
-        <a class="login-brand" href="index.html">
-          <div class="login-brand-title">Om Belimaa</div>
-          <div class="login-brand-sub">Handcrafted with devotion</div>
-        </a>
-        <a class="login-back" href="index.html">Back to Store</a>
-      </div>
+    <div class="login-shell">
+      <a class="login-back" href="index.html">Back to Store</a>
 
-      <div class="login-shell">
-        <aside class="login-aside">
-          <div class="login-aside-badge">Belimaa Account</div>
-          <div>
-            <h1>Simple login and signup for Belimaa.</h1>
-            <p>Access your orders, saved items and faster checkout with one compact panel.</p>
+      <div class="login-box">
+        <div class="login-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-mark">Om</div>
+            <div class="nav-logo-text">
+              <div class="nav-logo-brand"><span class="b">Beli</span><span class="g">maa</span></div>
+              <div class="nav-logo-tagline">&#x0938;&#x094D;&#x0935;&#x092A;&#x094D;&#x0928;&#x093E;&#x0924;&#x094D; &#x0938;&#x0924;&#x094D;&#x092F;&#x0902;&#x0964;</div>
+            </div>
+          </a>
+          <p id="login-subtitle">Login with mobile number and password</p>
+        </div>
+
+        <div class="login-tabs">
+          <button type="button" class="login-tab active" id="tab-login">Login</button>
+          <button type="button" class="login-tab" id="tab-signup">Sign Up</button>
+        </div>
+
+        <div class="login-note" id="login-note">Use your mobile number and password for quick access to Belimaa.</div>
+
+        <form class="login-form" id="login-form">
+          <div class="login-field" id="field-name" style="display:none;">
+            <label for="auth-name">Full Name</label>
+            <input id="auth-name" type="text" placeholder="Enter your full name">
           </div>
-          <div class="login-aside-points">
-            <div>Login with email and password.</div>
-            <div>Sign up in one quick step.</div>
-            <div>Use phone OTP if needed.</div>
+
+          <div class="login-field">
+            <label for="auth-phone">Mobile Number</label>
+            <input id="auth-phone" type="tel" placeholder="Enter mobile number">
           </div>
-        </aside>
 
-        <main class="login-main">
-          <div class="login-card">
-            <div class="login-head">
-              <h2 id="login-title">Login</h2>
-              <p id="login-subtitle">Enter your details to continue to Belimaa.</p>
-            </div>
-
-            <div class="login-tabs">
-              <button type="button" class="login-tab active" id="tab-login">Login</button>
-              <button type="button" class="login-tab" id="tab-signup">Sign Up</button>
-            </div>
-
-            <div class="login-methods">
-              <button type="button" class="login-method active" id="method-email">Email</button>
-              <button type="button" class="login-method" id="method-phone">Phone OTP</button>
-            </div>
-
-            <div class="login-note" id="login-note">Email login is the fastest option. Use phone OTP when needed.</div>
-
-            <form class="login-form" id="login-form">
-              <div class="login-field" id="field-name" style="display:none;">
-                <label for="auth-name">Full Name</label>
-                <input id="auth-name" type="text" placeholder="Enter your full name">
-              </div>
-
-              <div class="login-field" id="field-email">
-                <label for="auth-email">Email</label>
-                <input id="auth-email" type="email" placeholder="Enter your email">
-              </div>
-
-              <div class="login-field" id="field-password">
-                <label for="auth-password">Password</label>
-                <input id="auth-password" type="password" placeholder="Enter your password">
-              </div>
-
-              <div class="login-field" id="field-phone" style="display:none;">
-                <label for="auth-phone">Phone Number</label>
-                <input id="auth-phone" type="tel" placeholder="Enter your phone number">
-              </div>
-
-              <div class="login-field" id="field-otp" style="display:none;">
-                <label for="auth-otp">6-Digit OTP</label>
-                <input id="auth-otp" type="text" maxlength="6" inputmode="numeric" placeholder="Enter OTP">
-              </div>
-
-              <div class="login-dev-otp" id="dev-otp" style="display:none;"></div>
-
-              <button class="login-submit" type="submit" id="submit-btn">Login to Belimaa</button>
-            </form>
-
-            <div class="login-mini-links">
-              <span>Safe, quick and easy access</span>
-              <span>Belimaa account</span>
-            </div>
-
-            <div class="login-switch" id="login-switch">
-              New to Belimaa?
-              <button type="button" id="switch-action">Create an account</button>
-            </div>
+          <div class="login-field">
+            <label for="auth-password">Password</label>
+            <input id="auth-password" type="password" placeholder="Enter password">
           </div>
-        </main>
+
+          <button class="login-submit" type="submit" id="submit-btn">Login to Belimaa</button>
+        </form>
+
+        <div class="login-links" id="login-links">
+          New to Belimaa? <button type="button" id="switch-action">Create account</button>
+        </div>
       </div>
     </div>
   </div>
@@ -404,148 +228,82 @@
   <div id="toast"></div>
   <script src="js/shared.js"></script>
   <script>
-    const pageAuthState = {
-      mode: 'login',
-      method: 'email',
-      otpRequested: false,
-      devOtp: ''
+    const loginState = {
+      mode: 'login'
     };
 
     const params = new URLSearchParams(window.location.search);
-    if (params.get('mode') === 'signup') pageAuthState.mode = 'signup';
-    if (params.get('method') === 'phone') pageAuthState.method = 'phone';
+    if (params.get('mode') === 'signup') loginState.mode = 'signup';
 
     const refs = {
-      title: document.getElementById('login-title'),
       subtitle: document.getElementById('login-subtitle'),
       note: document.getElementById('login-note'),
       form: document.getElementById('login-form'),
       submit: document.getElementById('submit-btn'),
-      switchWrap: document.getElementById('login-switch'),
       tabLogin: document.getElementById('tab-login'),
       tabSignup: document.getElementById('tab-signup'),
-      methodEmail: document.getElementById('method-email'),
-      methodPhone: document.getElementById('method-phone'),
       fieldName: document.getElementById('field-name'),
-      fieldEmail: document.getElementById('field-email'),
-      fieldPassword: document.getElementById('field-password'),
-      fieldPhone: document.getElementById('field-phone'),
-      fieldOtp: document.getElementById('field-otp'),
-      devOtp: document.getElementById('dev-otp')
+      links: document.getElementById('login-links')
     };
 
-    function renderLoginPage() {
-      const isSignup = pageAuthState.mode === 'signup';
-      const isPhone = pageAuthState.method === 'phone';
-
+    function renderLoginState() {
+      const isSignup = loginState.mode === 'signup';
       refs.tabLogin.classList.toggle('active', !isSignup);
       refs.tabSignup.classList.toggle('active', isSignup);
-      refs.methodEmail.classList.toggle('active', !isPhone);
-      refs.methodPhone.classList.toggle('active', isPhone);
-
       refs.fieldName.style.display = isSignup ? 'grid' : 'none';
-      refs.fieldEmail.style.display = isPhone ? 'none' : 'grid';
-      refs.fieldPassword.style.display = isPhone ? 'none' : 'grid';
-      refs.fieldPhone.style.display = isPhone ? 'grid' : 'none';
-      refs.fieldOtp.style.display = isPhone && pageAuthState.otpRequested ? 'grid' : 'none';
-      refs.devOtp.style.display = pageAuthState.devOtp ? 'block' : 'none';
-      refs.devOtp.textContent = pageAuthState.devOtp ? `Demo OTP: ${pageAuthState.devOtp}` : '';
 
-      if (isPhone) {
-        refs.title.textContent = isSignup ? 'Sign Up with OTP' : 'Login with OTP';
-        refs.subtitle.textContent = 'Enter your phone number for quick access.';
-        refs.note.textContent = pageAuthState.otpRequested
-          ? 'Enter the OTP sent by the backend flow.'
-          : 'Request OTP and verify in the same compact form.';
-        refs.submit.textContent = pageAuthState.otpRequested ? 'Verify OTP' : 'Request OTP';
-      } else {
-        refs.title.textContent = isSignup ? 'Create Account' : 'Login';
-        refs.subtitle.textContent = isSignup
-          ? 'Create your Belimaa account in one quick step.'
-          : 'Enter your email and password to continue.';
-        refs.note.textContent = isSignup
-          ? 'Only the essential fields are shown to keep signup easy.'
-          : 'Email login is the fastest way to access your Belimaa account.';
-        refs.submit.textContent = isSignup ? 'Create Account' : 'Login to Belimaa';
-      }
+      refs.subtitle.textContent = isSignup
+        ? 'Create account with mobile number and password'
+        : 'Login with mobile number and password';
+      refs.note.textContent = isSignup
+        ? 'Sign up in a simple way using your name, mobile number and password.'
+        : 'Use your mobile number and password for quick access to Belimaa.';
+      refs.submit.textContent = isSignup ? 'Create Belimaa Account' : 'Login to Belimaa';
 
-      refs.switchWrap.innerHTML = isSignup
-        ? 'Already have a Belimaa account? <button type="button" id="switch-action">Login here</button>'
-        : 'New to Belimaa? <button type="button" id="switch-action">Create an account</button>';
+      refs.links.innerHTML = isSignup
+        ? 'Already have an account? <button type="button" id="switch-action">Login</button>'
+        : 'New to Belimaa? <button type="button" id="switch-action">Create account</button>';
 
       document.getElementById('switch-action').addEventListener('click', () => {
-        pageAuthState.mode = isSignup ? 'login' : 'signup';
-        pageAuthState.otpRequested = false;
-        pageAuthState.devOtp = '';
-        renderLoginPage();
+        loginState.mode = isSignup ? 'login' : 'signup';
+        renderLoginState();
       });
     }
 
     refs.tabLogin.addEventListener('click', () => {
-      pageAuthState.mode = 'login';
-      pageAuthState.otpRequested = false;
-      pageAuthState.devOtp = '';
-      renderLoginPage();
+      loginState.mode = 'login';
+      renderLoginState();
     });
 
     refs.tabSignup.addEventListener('click', () => {
-      pageAuthState.mode = 'signup';
-      pageAuthState.otpRequested = false;
-      pageAuthState.devOtp = '';
-      renderLoginPage();
-    });
-
-    refs.methodEmail.addEventListener('click', () => {
-      pageAuthState.method = 'email';
-      pageAuthState.otpRequested = false;
-      pageAuthState.devOtp = '';
-      renderLoginPage();
-    });
-
-    refs.methodPhone.addEventListener('click', () => {
-      pageAuthState.method = 'phone';
-      pageAuthState.otpRequested = false;
-      pageAuthState.devOtp = '';
-      renderLoginPage();
+      loginState.mode = 'signup';
+      renderLoginState();
     });
 
     refs.form.addEventListener('submit', async (event) => {
       event.preventDefault();
       refs.submit.disabled = true;
 
-      try {
-        if (pageAuthState.method === 'phone') {
-          const phone = document.getElementById('auth-phone').value.trim();
-          const name = document.getElementById('auth-name').value.trim();
+      const phone = document.getElementById('auth-phone').value.trim();
+      const password = document.getElementById('auth-password').value;
+      const email = phone ? `${phone.replace(/\D/g, '')}@belimaa.local` : '';
 
-          if (!pageAuthState.otpRequested) {
-            const data = await window.Auth.requestOtp({ phone, name });
-            pageAuthState.otpRequested = true;
-            pageAuthState.devOtp = data.devOtp || '';
-            showToast('OTP generated successfully', 'success');
-            renderLoginPage();
-          } else {
-            const otp = document.getElementById('auth-otp').value.trim();
-            await window.Auth.verifyOtp({ phone, otp, name });
-            showToast('Phone login successful', 'success');
-            window.location.href = 'index.html';
-          }
-        } else if (pageAuthState.mode === 'signup') {
+      try {
+        if (loginState.mode === 'signup') {
           await window.Auth.register({
             name: document.getElementById('auth-name').value.trim(),
-            email: document.getElementById('auth-email').value.trim(),
-            password: document.getElementById('auth-password').value
+            email,
+            password
           });
           showToast('Account created successfully', 'success');
-          window.location.href = 'index.html';
         } else {
           await window.Auth.login({
-            email: document.getElementById('auth-email').value.trim(),
-            password: document.getElementById('auth-password').value
+            email,
+            password
           });
           showToast('Logged in successfully', 'success');
-          window.location.href = 'index.html';
         }
+        window.location.href = 'index.html';
       } catch (error) {
         showToast(error.message || 'Authentication failed', 'error');
       } finally {
@@ -553,7 +311,7 @@
       }
     });
 
-    renderLoginPage();
+    renderLoginState();
   </script>
 </body>
 </html>

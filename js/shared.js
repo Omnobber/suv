@@ -11,7 +11,10 @@ const TABLE = {
   products: 'belimaa_products',
   orders: 'belimaa_orders',
   enquiries: 'belimaa_enquiries',
-  settings: 'belimaa_settings'
+  settings: 'belimaa_settings',
+  coupons: 'belimaa_coupons',
+  staff: 'belimaa_staff',
+  activity: 'belimaa_admin_activity'
 };
 
 const DEFAULT_SITE_SETTINGS = {
@@ -22,10 +25,12 @@ const DEFAULT_SITE_SETTINGS = {
   nav_color_start: '#0b1f4d',
   nav_color_mid: '#12357a',
   nav_color_end: '#1b4f9c',
-  brand_blue_color: '#2d93dd',
-  brand_green_color: '#8bd63c',
+  brand_blue_color: '#4057c8',
+  brand_green_color: '#4aa548',
   home_collections_badge: 'Browse by Category',
   home_collections_title: 'Shop Our Collections',
+  products_banner_title: 'All Products',
+  products_banner_subtitle: 'Explore our complete collection of premium handcrafted products',
   temple_card_image: 'images/products/light-wood-table-mandir.jpg',
   festival_card_image: 'images/products/painted-rangoli-disc.jpg',
   home_decor_card_image: 'images/products/tree-wall-panel.jpg',
@@ -103,15 +108,11 @@ function getBelimaaLocalCatalog() {
 
 function saveBelimaaLocalCatalog(products = []) {
   localStorage.setItem(BELIMAA_LOCAL_CATALOG_KEY, JSON.stringify(products));
+  window.dispatchEvent(new CustomEvent('belimaa-catalog-updated', { detail: products }));
 }
 
 function ensureBelimaaLocalCatalog() {
-  const localProducts = getBelimaaLocalCatalog();
-  if (!localProducts.length) {
-    saveBelimaaLocalCatalog(BELIMAA_FALLBACK_PRODUCTS);
-    return [...BELIMAA_FALLBACK_PRODUCTS];
-  }
-  return localProducts;
+  return getBelimaaLocalCatalog();
 }
 
 function mergeBelimaaProducts(products = []) {
@@ -131,15 +132,34 @@ window.getBelimaaLocalCatalog = getBelimaaLocalCatalog;
 window.saveBelimaaLocalCatalog = saveBelimaaLocalCatalog;
 window.ensureBelimaaLocalCatalog = ensureBelimaaLocalCatalog;
 
+function bindBelimaaCatalogSync(callback) {
+  if (typeof callback !== 'function') return;
+  window.addEventListener('storage', (event) => {
+    if (event.key === BELIMAA_LOCAL_CATALOG_KEY) callback();
+  });
+  window.addEventListener('belimaa-catalog-updated', () => callback());
+  window.addEventListener('focus', () => callback());
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') callback();
+  });
+}
+
+window.bindBelimaaCatalogSync = bindBelimaaCatalogSync;
+
 function getApiCandidates() {
   const candidates = [];
   const metaApiBase = document.querySelector('meta[name="belimaa-api-base"]')?.getAttribute('content');
   const storedApiBase = localStorage.getItem('belimaa_api_base');
+  const isLocalHost = window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname);
   if (metaApiBase) {
     candidates.push(String(metaApiBase).replace(/\/$/, ''));
   }
   if (storedApiBase) {
     candidates.push(String(storedApiBase).replace(/\/$/, ''));
+  }
+  if (isLocalHost) {
+    candidates.push('http://localhost:5000/api');
+    candidates.push('http://127.0.0.1:5000/api');
   }
   if (window.BELIMAA_API_BASE) {
     candidates.push(String(window.BELIMAA_API_BASE).replace(/\/$/, ''));
@@ -148,10 +168,6 @@ function getApiCandidates() {
     candidates.push(window.location.origin.replace(/\/$/, '') + '/api');
   }
   candidates.push('/api');
-  if (window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-    candidates.push('http://localhost:5000/api');
-    candidates.push('http://127.0.0.1:5000/api');
-  }
   return [...new Set(candidates)];
 }
 
@@ -251,7 +267,10 @@ async function submitEnquiry(data) {
 }
 
 function normalizeSiteSettings(raw = {}) {
-  return { ...DEFAULT_SITE_SETTINGS, ...(raw || {}) };
+  const normalized = { ...DEFAULT_SITE_SETTINGS, ...(raw || {}) };
+  if (normalized.brand_blue_color === '#2d93dd') normalized.brand_blue_color = DEFAULT_SITE_SETTINGS.brand_blue_color;
+  if (normalized.brand_green_color === '#8bd63c') normalized.brand_green_color = DEFAULT_SITE_SETTINGS.brand_green_color;
+  return normalized;
 }
 
 async function getSiteSettings() {
@@ -332,8 +351,8 @@ function applySiteSettings(rawSettings = {}) {
   const gradient = `linear-gradient(90deg, ${settings.nav_color_start} 0%, ${settings.nav_color_mid} 55%, ${settings.nav_color_end} 100%)`;
 
   root.style.setProperty('--gradient-nav', gradient);
-  root.style.setProperty('--brand-blue', settings.brand_blue_color);
-  root.style.setProperty('--brand-green', settings.brand_green_color);
+  root.style.setProperty('--brand-blue', DEFAULT_SITE_SETTINGS.brand_blue_color);
+  root.style.setProperty('--brand-green', DEFAULT_SITE_SETTINGS.brand_green_color);
 
   setBrandMarkup('.nav-logo-brand', settings.brand_blue_text, settings.brand_green_text);
   setBrandMarkup('.footer-brand-name', settings.brand_blue_text, settings.brand_green_text);
@@ -349,6 +368,8 @@ function applySiteSettings(rawSettings = {}) {
   const homeMap = {
     'collections-badge': settings.home_collections_badge,
     'collections-title': settings.home_collections_title,
+    'products-banner-title': settings.products_banner_title,
+    'products-banner-subtitle': settings.products_banner_subtitle,
     'temple-section-title': settings.temple_section_title,
     'temple-section-subtitle': settings.temple_section_subtitle,
     'festival-section-title': settings.festival_section_title,
@@ -393,13 +414,15 @@ const authState = {
 
 function getAuthApiCandidates() {
   const candidates = [];
+  const isLocalHost = window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  if (isLocalHost) {
+    candidates.push('http://localhost:5000/api');
+    candidates.push('http://127.0.0.1:5000/api');
+  }
   if (window.location.origin && window.location.origin.startsWith('http')) {
     candidates.push(window.location.origin.replace(/\/$/, '') + '/api');
   }
   candidates.push('/api');
-  if (window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-    candidates.push('http://localhost:5000/api');
-  }
   return [...new Set(candidates)];
 }
 

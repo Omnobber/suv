@@ -200,6 +200,10 @@ export function serializeOrder(doc) {
     payment_method: cleanString(raw.paymentMethod || raw.payment_method, 'cod') || 'cod',
     payment_status: cleanString(raw.paymentStatus || raw.payment_status, 'created') || 'created',
     status: cleanString(raw.status, 'pending') || 'pending',
+    invoiceNumber: cleanString(raw.invoiceNumber || raw.invoice_number),
+    invoice_number: cleanString(raw.invoiceNumber || raw.invoice_number),
+    trackingNumber: cleanString(raw.trackingNumber || raw.tracking_number),
+    tracking_number: cleanString(raw.trackingNumber || raw.tracking_number),
     notes: cleanString(raw.notes),
     razorpay_order_id: cleanString(raw.razorpayOrderId || raw.razorpay_order_id),
     razorpay_payment_id: cleanString(raw.razorpayPaymentId || raw.razorpay_payment_id),
@@ -246,6 +250,28 @@ export function parseSettingsPayload(body = {}) {
 }
 
 export function serializeSettings(doc) {
+  const raw = toPlain(doc) || {};
+  const id = String(raw._id || raw.id || '');
+
+  return {
+    ...raw,
+    id,
+    _id: id,
+    created_at: raw.createdAt || raw.created_at || null,
+    updated_at: raw.updatedAt || raw.updated_at || null
+  };
+}
+
+export function parseFlexiblePayload(body = {}) {
+  const payload = { ...body };
+  delete payload.id;
+  delete payload._id;
+  delete payload.created_at;
+  delete payload.updated_at;
+  return payload;
+}
+
+export function serializeFlexibleRecord(doc) {
   const raw = toPlain(doc) || {};
   const id = String(raw._id || raw.id || '');
 

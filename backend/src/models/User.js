@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, trim: true, sparse: true, unique: true },
   password: { type: String, required: true },
   role: { type: String, enum: ['admin', 'user'], default: 'user' },
+  tokenVersion: { type: Number, default: 0 },
   authProvider: { type: String, enum: ['email', 'phone', 'google', 'facebook'], default: 'email' },
   phoneVerified: { type: Boolean, default: false },
   otpCodeHash: { type: String, default: '' },

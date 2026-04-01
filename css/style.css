@@ -15,8 +15,8 @@
   --green-light:  #a8e6cf;
   --green-pale:   #e8f8f2;
   --gradient-nav: linear-gradient(90deg, #0b1f4d 0%, #12357a 55%, #1b4f9c 100%);
-  --brand-blue:   #2d93dd;
-  --brand-green:  #8bd63c;
+  --brand-blue:   #4057c8;
+  --brand-green:  #4aa548;
   --gradient-hero: linear-gradient(135deg, #e8f4fb 0%, #e8f8f2 100%);
   --gradient-card: linear-gradient(135deg, #f0faff 0%, #f0fff8 100%);
   --gradient-btn:  linear-gradient(135deg, #0f4fd1 0%, #2d7df2 100%);
@@ -92,7 +92,7 @@ input, textarea, select { font-family: inherit; outline: none; }
   text-decoration: none;
 }
 .nav-logo-mark {
-  display: none;
+  display: none !important;
 }
 .nav-logo-text {
   display: flex;
@@ -102,9 +102,9 @@ input, textarea, select { font-family: inherit; outline: none; }
 .nav-logo-brand {
   font-family: var(--font-heading);
   font-size: 2.05rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
 }
 .nav-logo-brand span.b { color: var(--brand-blue); }
 .nav-logo-brand span.g { color: var(--brand-green); }
@@ -1205,12 +1205,12 @@ footer {
   gap: 12px;
   margin-bottom: 12px;
 }
-.footer-logo-mark { display: none; }
+.footer-logo-mark { display: none !important; }
 .footer-brand-name {
   font-family: var(--font-heading);
   font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-weight: 800;
+  letter-spacing: -0.055em;
   line-height: 1;
   color: var(--brand-blue);
 }

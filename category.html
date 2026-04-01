@@ -340,9 +340,8 @@ async function loadCategoryProducts(cat) {
   renderSkeleton('cat-products-grid', 6);
   try {
     const res = await getProducts({ limit: 100 });
-    const allProds = window.mergeBelimaaProducts
-      ? mergeBelimaaProducts((res && res.data) ? res.data : [])
-      : ((res && res.data && res.data.length) ? res.data : (window.BELIMAA_FALLBACK_PRODUCTS || []));
+    const allProds = (res && Array.isArray(res.data)) ? res.data : [];
+    if (window.saveBelimaaLocalCatalog) saveBelimaaLocalCatalog(allProds);
     
     // Update counts in sidebar
     const catKeys = ['Temple','Festival','Home Decor','Embroidery','Metal Embroidery'];
@@ -355,14 +354,13 @@ async function loadCategoryProducts(cat) {
     allCatProducts = allProds.filter(p => p.category === cat && p.active !== false);
 
     // Fallback to static data if API returns empty
-    if (allCatProducts.length === 0) {
-      allCatProducts = (window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(cat) : (FALLBACK_PRODUCTS[cat] || []));
-    }
-    
     filteredProducts = [...allCatProducts];
     renderFilteredProducts();
   } catch(err) {
-    allCatProducts = window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(cat) : (FALLBACK_PRODUCTS[cat] || []);
+    const cachedProducts = window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : [];
+    allCatProducts = cachedProducts.length
+      ? cachedProducts.filter(p => p.category === cat && p.active !== false)
+      : (window.getBelimaaFallbackProducts ? getBelimaaFallbackProducts(cat) : (FALLBACK_PRODUCTS[cat] || []));
     filteredProducts = [...allCatProducts];
     const catKeys = ['Temple','Festival','Home Decor','Embroidery','Metal Embroidery'];
     const idMap = { 'Temple':'temple','Festival':'festival','Home Decor':'homedecor','Embroidery':'embroidery','Metal Embroidery':'metal' };
@@ -442,6 +440,7 @@ function setView(type) {
 const cat = decodeURIComponent(getParam('cat')) || 'Temple';
 setupCatPage(cat);
 loadCategoryProducts(cat);
+if (window.bindBelimaaCatalogSync) bindBelimaaCatalogSync(() => loadCategoryProducts(cat));
 </script>
 </body>
 </html>

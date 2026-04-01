@@ -1,12 +1,17 @@
+import AdminActivity from '../models/AdminActivity.js';
+import Coupon from '../models/Coupon.js';
 import Enquiry from '../models/Enquiry.js';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import Setting from '../models/Setting.js';
+import StaffAccess from '../models/StaffAccess.js';
 import {
+  parseFlexiblePayload,
   parseEnquiryPayload,
   parseOrderPayload,
   parseProductPayload,
   parseSettingsPayload,
+  serializeFlexibleRecord,
   serializeEnquiry,
   serializeOrder,
   serializeProduct,
@@ -17,8 +22,15 @@ const TABLE = {
   products: 'belimaa_products',
   orders: 'belimaa_orders',
   enquiries: 'belimaa_enquiries',
-  settings: 'belimaa_settings'
+  settings: 'belimaa_settings',
+  coupons: 'belimaa_coupons',
+  staff: 'belimaa_staff',
+  activity: 'belimaa_admin_activity'
 };
+
+const WRITE_ALLOWED = new Set([TABLE.products, TABLE.enquiries, TABLE.settings, TABLE.coupons, TABLE.staff, TABLE.activity]);
+const PATCH_ALLOWED = new Set([TABLE.orders, TABLE.enquiries, TABLE.settings, TABLE.coupons, TABLE.staff, TABLE.activity]);
+const DELETE_ALLOWED = new Set([TABLE.products, TABLE.enquiries, TABLE.coupons, TABLE.staff, TABLE.activity]);
 
 function getLimit(value, fallback = 100) {
   const parsed = Number(value);
@@ -75,6 +87,21 @@ export async function listTable(req, res) {
     return res.json({ data: settings.map(serializeSettings) });
   }
 
+  if (table === TABLE.coupons) {
+    const coupons = await Coupon.find().sort({ updatedAt: -1 }).limit(limit);
+    return res.json({ data: coupons.map(serializeFlexibleRecord) });
+  }
+
+  if (table === TABLE.staff) {
+    const staff = await StaffAccess.find().sort({ updatedAt: -1 }).limit(limit);
+    return res.json({ data: staff.map(serializeFlexibleRecord) });
+  }
+
+  if (table === TABLE.activity) {
+    const activity = await AdminActivity.find().sort({ at: -1, createdAt: -1 }).limit(limit);
+    return res.json({ data: activity.map(serializeFlexibleRecord) });
+  }
+
   return res.status(404).json({ message: 'Unknown table.' });
 }
 
@@ -105,20 +132,34 @@ export async function getTableRecord(req, res) {
     return res.json({ data: serializeSettings(settings) });
   }
 
+  if (table === TABLE.coupons) {
+    const coupon = await Coupon.findById(id);
+    if (!coupon) return res.status(404).json({ message: 'Coupon not found.' });
+    return res.json({ data: serializeFlexibleRecord(coupon) });
+  }
+
+  if (table === TABLE.staff) {
+    const staff = await StaffAccess.findById(id);
+    if (!staff) return res.status(404).json({ message: 'Staff member not found.' });
+    return res.json({ data: serializeFlexibleRecord(staff) });
+  }
+
+  if (table === TABLE.activity) {
+    const activity = await AdminActivity.findById(id);
+    if (!activity) return res.status(404).json({ message: 'Activity record not found.' });
+    return res.json({ data: serializeFlexibleRecord(activity) });
+  }
+
   return res.status(404).json({ message: 'Unknown table.' });
 }
 
 export async function createTableRecord(req, res) {
   const { table } = req.params;
+  if (!WRITE_ALLOWED.has(table)) return res.status(403).json({ message: 'Create is disabled for this table.' });
 
   if (table === TABLE.products) {
     const product = await Product.create(parseProductPayload(req.body, req.file?.filename));
     return res.status(201).json({ data: serializeProduct(product) });
-  }
-
-  if (table === TABLE.orders) {
-    const order = await Order.create(parseOrderPayload(req.body));
-    return res.status(201).json({ data: serializeOrder(order) });
   }
 
   if (table === TABLE.enquiries) {
@@ -131,11 +172,27 @@ export async function createTableRecord(req, res) {
     return res.status(201).json({ data: serializeSettings(settings) });
   }
 
+  if (table === TABLE.coupons) {
+    const coupon = await Coupon.create(parseFlexiblePayload(req.body));
+    return res.status(201).json({ data: serializeFlexibleRecord(coupon) });
+  }
+
+  if (table === TABLE.staff) {
+    const staff = await StaffAccess.create(parseFlexiblePayload(req.body));
+    return res.status(201).json({ data: serializeFlexibleRecord(staff) });
+  }
+
+  if (table === TABLE.activity) {
+    const activity = await AdminActivity.create(parseFlexiblePayload(req.body));
+    return res.status(201).json({ data: serializeFlexibleRecord(activity) });
+  }
+
   return res.status(404).json({ message: 'Unknown table.' });
 }
 
 export async function updateTableRecord(req, res) {
   const { table, id } = req.params;
+  if (!WRITE_ALLOWED.has(table)) return res.status(403).json({ message: 'Update is disabled for this table.' });
 
   if (table === TABLE.products) {
     const current = await Product.findById(id);
@@ -158,16 +215,28 @@ export async function updateTableRecord(req, res) {
     return res.json({ data: serializeSettings(settings) });
   }
 
-  if (table === TABLE.orders) {
-    const order = await Order.findByIdAndUpdate(id, parseOrderPayload(req.body), { new: true, runValidators: true });
-    if (!order) return res.status(404).json({ message: 'Order not found.' });
-    return res.json({ data: serializeOrder(order) });
-  }
-
   if (table === TABLE.enquiries) {
     const enquiry = await Enquiry.findByIdAndUpdate(id, parseEnquiryPayload(req.body), { new: true, runValidators: true });
     if (!enquiry) return res.status(404).json({ message: 'Enquiry not found.' });
     return res.json({ data: serializeEnquiry(enquiry) });
+  }
+
+  if (table === TABLE.coupons) {
+    const coupon = await Coupon.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!coupon) return res.status(404).json({ message: 'Coupon not found.' });
+    return res.json({ data: serializeFlexibleRecord(coupon) });
+  }
+
+  if (table === TABLE.staff) {
+    const staff = await StaffAccess.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!staff) return res.status(404).json({ message: 'Staff member not found.' });
+    return res.json({ data: serializeFlexibleRecord(staff) });
+  }
+
+  if (table === TABLE.activity) {
+    const activity = await AdminActivity.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!activity) return res.status(404).json({ message: 'Activity record not found.' });
+    return res.json({ data: serializeFlexibleRecord(activity) });
   }
 
   return res.status(404).json({ message: 'Unknown table.' });
@@ -175,6 +244,7 @@ export async function updateTableRecord(req, res) {
 
 export async function patchTableRecord(req, res) {
   const { table, id } = req.params;
+  if (!PATCH_ALLOWED.has(table)) return res.status(403).json({ message: 'Patch is disabled for this table.' });
 
   if (table === TABLE.orders) {
     const order = await Order.findByIdAndUpdate(
@@ -202,11 +272,30 @@ export async function patchTableRecord(req, res) {
     return res.json({ data: serializeSettings(settings) });
   }
 
+  if (table === TABLE.coupons) {
+    const coupon = await Coupon.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!coupon) return res.status(404).json({ message: 'Coupon not found.' });
+    return res.json({ data: serializeFlexibleRecord(coupon) });
+  }
+
+  if (table === TABLE.staff) {
+    const staff = await StaffAccess.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!staff) return res.status(404).json({ message: 'Staff member not found.' });
+    return res.json({ data: serializeFlexibleRecord(staff) });
+  }
+
+  if (table === TABLE.activity) {
+    const activity = await AdminActivity.findByIdAndUpdate(id, parseFlexiblePayload(req.body), { new: true, runValidators: true });
+    if (!activity) return res.status(404).json({ message: 'Activity record not found.' });
+    return res.json({ data: serializeFlexibleRecord(activity) });
+  }
+
   return res.status(404).json({ message: 'Unsupported patch route.' });
 }
 
 export async function deleteTableRecord(req, res) {
   const { table, id } = req.params;
+  if (!DELETE_ALLOWED.has(table)) return res.status(403).json({ message: 'Delete is disabled for this table.' });
 
   if (table === TABLE.products) {
     await Product.findByIdAndDelete(id);
@@ -215,6 +304,21 @@ export async function deleteTableRecord(req, res) {
 
   if (table === TABLE.enquiries) {
     await Enquiry.findByIdAndDelete(id);
+    return res.status(204).end();
+  }
+
+  if (table === TABLE.coupons) {
+    await Coupon.findByIdAndDelete(id);
+    return res.status(204).end();
+  }
+
+  if (table === TABLE.staff) {
+    await StaffAccess.findByIdAndDelete(id);
+    return res.status(204).end();
+  }
+
+  if (table === TABLE.activity) {
+    await AdminActivity.findByIdAndDelete(id);
     return res.status(204).end();
   }
 

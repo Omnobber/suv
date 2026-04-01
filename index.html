@@ -13,6 +13,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Belimaa">
+  <link rel="canonical" href="https://belimaa.in/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://belimaa.in/">
+  <meta property="og:site_name" content="Belimaa">
+  <meta property="og:image" content="https://belimaa.in/images/products/light-wood-table-mandir.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Belimaa | Premium Handcrafted Indian Decor">
+  <meta name="twitter:description" content="Premium handcrafted decor, mandirs, festival accents, engraving, and gifting from Belimaa.">
+  <meta name="twitter:image" content="https://belimaa.in/images/products/light-wood-table-mandir.jpg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Belimaa",
+      "url": "https://belimaa.in/",
+      "logo": "https://belimaa.in/favicon.svg",
+      "image": "https://belimaa.in/images/products/light-wood-table-mandir.jpg",
+      "description": "Belimaa is a premium Indian handcrafted decor brand for temple mandirs, festival decor, home styling, engraving, and gifting.",
+      "email": "hello@belimaa.in",
+      "telephone": "+91 90070 10316",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jamshedpur",
+        "addressRegion": "Jharkhand",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.instagram.com/belimaa0657/",
+        "https://www.facebook.com/belimaa0657",
+        "https://www.youtube.com/@saiutsavdecorjh"
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Belimaa",
+      "url": "https://belimaa.in/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://belimaa.in/products.html?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
 </head>
 <body>
 
@@ -263,6 +314,70 @@
   </div>
 </section>
 
+<!-- ============ HELP & SUPPORT ============ -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <span class="section-badge">Support & Help</span>
+      <h2 class="section-title">Quick Help For Shopping, Delivery, And Orders</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Browse automated support replies for product discovery, COD, shipping, coupons, and order help without leaving the homepage.</p>
+    </div>
+    <a href="https://wa.me/917209395894" class="view-all-link" target="_blank">WhatsApp Support <i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,0.85fr);gap:20px">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:22px">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('discover')">Product Discovery</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('budget')">Budget Help</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('payment')">COD & Payments</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('shipping')">Shipping & Delivery</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('returns')">Returns</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('coupon')">Coupons</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('tracking')">Order Tracking</button>
+        <button class="btn btn-ghost btn-sm" onclick="renderHomeSupportMessage('checkout')">Checkout Help</button>
+      </div>
+      <div id="home-support-response" style="background:linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:18px;color:var(--ink2);line-height:1.7;font-size:0.9rem"></div>
+      <div id="home-support-recommendations" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:16px"></div>
+    </div>
+
+    <div style="display:grid;gap:16px">
+      <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:22px">
+        <div style="font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:14px">Automated Support Messages</div>
+        <div style="display:grid;gap:10px">
+          <div style="padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--gradient-card)">
+            <strong style="display:block;font-size:0.84rem;color:var(--ink)">COD and Payment</strong>
+            <span style="display:block;font-size:0.8rem;color:var(--ink3);margin-top:4px">Yes, COD is available on eligible orders. We also support secure online payment options for a smooth checkout experience.</span>
+          </div>
+          <div style="padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--gradient-card)">
+            <strong style="display:block;font-size:0.84rem;color:var(--ink)">Shipping and Delivery</strong>
+            <span style="display:block;font-size:0.8rem;color:var(--ink3);margin-top:4px">We offer delivery across India. Delivery timelines can vary by location, and the final estimate is usually clearer at checkout.</span>
+          </div>
+          <div style="padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--gradient-card)">
+            <strong style="display:block;font-size:0.84rem;color:var(--ink)">Coupon Help</strong>
+            <span style="display:block;font-size:0.8rem;color:var(--ink3);margin-top:4px">If there is an active offer available for your order, it will apply based on eligibility at checkout.</span>
+          </div>
+          <div style="padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--gradient-card)">
+            <strong style="display:block;font-size:0.84rem;color:var(--ink)">Order-Specific Help</strong>
+            <span style="display:block;font-size:0.8rem;color:var(--ink3);margin-top:4px">For order tracking, delivery updates, address changes, or any order-specific request, please connect with our support team on WhatsApp.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:22px">
+        <div style="font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:14px">Fast Support Paths</div>
+        <div style="display:grid;gap:10px">
+          <a href="products.html" class="btn btn-ghost btn-sm" style="justify-content:center">Browse Full Catalog</a>
+          <a href="cart.html" class="btn btn-ghost btn-sm" style="justify-content:center">Review Cart</a>
+          <a href="tracking.html" class="btn btn-ghost btn-sm" style="justify-content:center">Track Order</a>
+          <a href="https://wa.me/917209395894" class="btn btn-primary btn-sm" style="justify-content:center" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ NEWSLETTER ============ -->
 <section class="newsletter-section">
   <div style="position:relative;z-index:2">
@@ -367,47 +482,142 @@ const SECTION_MAP = {
   'Metal Embroidery': 'metal-products'
 };
 let allProducts = [];
+const HOME_SUPPORT_MESSAGES = {
+  discover: {
+    text: 'If you want help choosing the right product, I can guide by category, use case, budget, and style. For home prayer spaces, wall decor, gifting, and festive styling, Belimaa has premium handcrafted options across the live catalog.',
+    picks: () => getSupportProducts([
+      product => product.category === 'Temple' && product.active !== false,
+      product => product.category === 'Home Decor' && product.active !== false
+    ], 4)
+  },
+  budget: {
+    text: 'If you are shopping by budget, compact decor and gifting pieces are the strongest place to start. Under Rs. 1,000, festival accents and personalized gifting styles are usually the closest fit. If you want a more premium statement piece, temple models and wall panels are a better direction.',
+    picks: () => getSupportProducts([
+      product => Number(product.price || 0) <= 1000 && product.active !== false,
+      product => Number(product.price || 0) <= 2000 && product.active !== false
+    ], 4)
+  },
+  payment: {
+    text: 'Yes, COD is available on eligible orders. We also support secure online payment options for a smooth checkout experience. If you already know what you want, you can continue to checkout confidently.',
+    picks: () => getSupportProducts([
+      product => product.featured,
+      product => product.active !== false
+    ], 3)
+  },
+  shipping: {
+    text: 'We offer delivery across India. Delivery timelines can vary by location, and the final estimate is usually clearer at checkout. If you need order-specific dispatch or delivery help, WhatsApp support is the fastest next step.',
+    picks: () => getSupportProducts([
+      product => product.category === 'Festival' && product.active !== false,
+      product => product.category === 'Temple' && product.active !== false
+    ], 3)
+  },
+  returns: {
+    text: 'If you need help with returns or post-order support, please connect with our team on WhatsApp so we can guide you based on the product and order details. For pre-purchase guidance, I can still help you choose the closest match from the live catalog.',
+    picks: () => getSupportProducts([
+      product => product.category === 'Home Decor' && product.active !== false,
+      product => product.category === 'Metal Embroidery' && product.active !== false
+    ], 3)
+  },
+  coupon: {
+    text: 'If there is an active offer available for your order, it will apply based on eligibility at checkout. If you want, you can first shortlist the strongest products and then review the final offer at checkout.',
+    picks: () => getSupportProducts([
+      product => Number(product.original_price || 0) > Number(product.price || 0),
+      product => product.featured
+    ], 4)
+  },
+  tracking: {
+    text: 'For order tracking, delivery updates, address changes, or any order-specific request, please connect with our support team on WhatsApp for quick assistance. For new purchases, I can still help you find the best product before checkout.',
+    picks: () => getSupportProducts([
+      product => product.category === 'Temple' && product.active !== false,
+      product => product.category === 'Festival' && product.active !== false
+    ], 3)
+  },
+  checkout: {
+    text: 'If this matches what you are looking for, you can go ahead and place the order now. If you want a quick shortlist first, start with featured products or the strongest picks from your preferred category.',
+    picks: () => getSupportProducts([
+      product => product.featured,
+      product => product.active !== false
+    ], 4)
+  }
+};
+
+function getSupportProducts(filters = [], limit = 4) {
+  const seen = new Set();
+  const picks = [];
+  filters.forEach(filterFn => {
+    allProducts.filter(filterFn).forEach(product => {
+      if (!product || seen.has(product.id) || picks.length >= limit) return;
+      seen.add(product.id);
+      picks.push(product);
+    });
+  });
+  return picks.slice(0, limit);
+}
+
+function renderSupportRecommendations(products = []) {
+  const container = document.getElementById('home-support-recommendations');
+  if (!container) return;
+  if (!products.length) {
+    container.innerHTML = `<div style="padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:#fff;color:var(--ink3);font-size:0.82rem">No matching recommendations right now. Try browsing the full catalog or chat with us on WhatsApp.</div>`;
+    return;
+  }
+  container.innerHTML = products.map(product => `
+    <a href="product-detail.html?id=${product.id}" style="display:block;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;box-shadow:var(--shadow-sm);color:inherit">
+      <div style="display:flex;gap:12px;align-items:center">
+        <img src="${product.image_url}" alt="${product.name}" style="width:64px;height:64px;border-radius:12px;object-fit:cover;border:1px solid var(--border)" onerror="this.src='https://placehold.co/80x80/e8f4fb/2a7fba?text=B'">
+        <div style="min-width:0">
+          <strong style="display:block;font-size:0.84rem;color:var(--ink);line-height:1.45">${product.name}</strong>
+          <span style="display:block;font-size:0.76rem;color:var(--ink3);margin-top:4px">${product.category}</span>
+          <span style="display:block;font-size:0.82rem;color:var(--green-deep);font-weight:700;margin-top:6px">Rs. ${Number(product.price || 0).toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+    </a>
+  `).join('');
+}
+
+function renderHomeSupportMessage(key = 'discover') {
+  const config = HOME_SUPPORT_MESSAGES[key] || HOME_SUPPORT_MESSAGES.discover;
+  const responseEl = document.getElementById('home-support-response');
+  if (responseEl) responseEl.textContent = config.text;
+  renderSupportRecommendations(config.picks());
+}
 
 async function loadHomePage() {
   try {
-    // Load all products
     const res = await getProducts({ limit: 100 });
-    allProducts = window.mergeBelimaaProducts ? mergeBelimaaProducts((res && res.data) ? res.data : []) : ((res && res.data && res.data.length) ? res.data : getBelimaaFallbackProducts());
+    allProducts = (res && Array.isArray(res.data)) ? res.data : [];
+    if (window.saveBelimaaLocalCatalog) saveBelimaaLocalCatalog(allProducts);
 
-    // Render each category section
     CATEGORIES.forEach(cat => {
       const catProducts = allProducts.filter(p => p.category === cat && p.active !== false);
       const containerId = SECTION_MAP[cat];
       const el = document.getElementById(containerId);
       if (!el) return;
       if (catProducts.length === 0) {
-        const fallbackProducts = getBelimaaFallbackProducts(cat);
-        if (fallbackProducts.length === 0) {
-          el.innerHTML = `<div style="padding:20px 0;color:var(--ink3);font-size:0.88rem">No products yet in this category.</div>`;
-          return;
-        }
-        el.innerHTML = fallbackProducts.map(buildProductCard).join('');
+        el.innerHTML = `<div style="padding:20px 0;color:var(--ink3);font-size:0.88rem">No products yet in this category.</div>`;
         return;
       }
       el.innerHTML = catProducts.map(buildProductCard).join('');
     });
 
-    // Render random/mixed products (shuffle all, pick 8)
     const shuffled = [...allProducts].sort(() => Math.random() - 0.5).slice(0, 8);
     renderProductGrid('random-products', shuffled);
 
   } catch (err) {
     console.error('Failed to load products:', err);
-    document.querySelectorAll('[id$="-products"]').forEach(el => {
-      el.innerHTML = `<div style="color:var(--ink3);font-size:0.85rem;padding:16px 0">Loading products...</div>`;
-    });
-    // Show placeholder cards on error
-    renderProductGrid('random-products', generatePlaceholderProducts());
+    const cachedProducts = window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : [];
+    allProducts = cachedProducts.length ? cachedProducts : getBelimaaFallbackProducts();
     CATEGORIES.forEach(cat => {
+      const catProducts = allProducts.filter(p => p.category === cat && p.active !== false);
       const el = document.getElementById(SECTION_MAP[cat]);
-      if (el) el.innerHTML = generatePlaceholderProducts(cat).map(buildProductCard).join('');
+      if (!el) return;
+      el.innerHTML = catProducts.length
+        ? catProducts.map(buildProductCard).join('')
+        : `<div style="padding:20px 0;color:var(--ink3);font-size:0.88rem">No products yet in this category.</div>`;
     });
+    renderProductGrid('random-products', allProducts.slice(0, 8));
   }
+  renderHomeSupportMessage('discover');
 }
 
 function generatePlaceholderProducts(cat) {
@@ -448,6 +658,7 @@ function handleNewsletter(e) {
 
 // Initialize
 loadHomePage();
+if (window.bindBelimaaCatalogSync) bindBelimaaCatalogSync(loadHomePage);
 </script>
 </body>
 </html>

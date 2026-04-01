@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Seo from '../components/Seo';
 import { useCart } from '../context/CartContext';
 import { api } from '../services/api';
 
@@ -9,6 +10,22 @@ export default function CheckoutPage() {
   const [placing, setPlacing] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!items.length || !form.email) return undefined;
+
+    const timeout = setTimeout(() => {
+      api.post('/abandoned-carts', { ...form, items, subtotal, shipping, total }).catch(() => {});
+    }, 1200);
+
+    return () => clearTimeout(timeout);
+  }, [form, items, shipping, subtotal, total]);
+
+  const finishOrder = async (order, response) => {
+    await api.post(`/orders/${order._id}/verify-payment`, response);
+    clearCart();
+    navigate(`/track-order?identifier=${encodeURIComponent(order.trackingNumber || order.tracking_number || order.invoiceNumber)}&email=${encodeURIComponent(form.email)}`);
+  };
+
   const placeOrder = async () => {
     if (!items.length) return;
     setPlacing(true);
@@ -16,13 +33,11 @@ export default function CheckoutPage() {
       const { data } = await api.post('/orders', { customer: form, items, subtotal, shipping, total, paymentMethod: 'razorpay' });
 
       if (data.mockMode || !window.Razorpay || !import.meta.env.VITE_RAZORPAY_KEY_ID || import.meta.env.VITE_RAZORPAY_KEY_ID.includes('your_key')) {
-        await api.post(`/orders/${data.order._id}/verify-payment`, {
+        await finishOrder(data.order, {
           razorpay_order_id: data.razorpayOrder.id,
           razorpay_payment_id: `mock_payment_${Date.now()}`,
           razorpay_signature: 'mock_signature'
         });
-        clearCart();
-        navigate('/');
         return;
       }
 
@@ -34,9 +49,7 @@ export default function CheckoutPage() {
         description: 'Premium handcrafted order',
         order_id: data.razorpayOrder.id,
         handler: async (response) => {
-          await api.post(`/orders/${data.order._id}/verify-payment`, response);
-          clearCart();
-          navigate('/');
+          await finishOrder(data.order, response);
         },
         prefill: { name: form.name, email: form.email, contact: form.phone },
         theme: { color: '#0f6bdc' }
@@ -52,13 +65,17 @@ export default function CheckoutPage() {
 
   return (
     <div className="checkout-page">
+      <Seo title="Checkout | Belimaa" description="Complete your Belimaa order with secure checkout, tracking, and invoice support." />
       <section className="checkout-panel">
         <div className="checkout-head">
           <div>
             <p className="eyebrow">Checkout</p>
             <h1>Complete your Belimaa order</h1>
           </div>
-          <Link to="/" className="secondary-button">Continue shopping</Link>
+          <div className="header-links-row">
+            <Link to="/track-order" className="ghost-button">Track order</Link>
+            <Link to="/" className="secondary-button">Continue shopping</Link>
+          </div>
         </div>
         <div className="checkout-grid">
           <div className="checkout-card">
@@ -71,6 +88,7 @@ export default function CheckoutPage() {
                 </label>
               ))}
             </div>
+            <p className="checkout-helper">If you leave checkout before paying, we can recover your cart and help you complete the order later.</p>
           </div>
           <div className="checkout-card">
             <h2>Your cart</h2>

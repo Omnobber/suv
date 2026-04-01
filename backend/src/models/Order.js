@@ -26,6 +26,8 @@ const orderSchema = new mongoose.Schema({
   paymentMethod: { type: String, default: 'cod' },
   paymentStatus: { type: String, default: 'created' },
   status: { type: String, default: 'pending' },
+  invoiceNumber: { type: String, trim: true, default: '' },
+  trackingNumber: { type: String, trim: true, default: '' },
   notes: { type: String, trim: true, default: '' },
   razorpayOrderId: String,
   razorpayPaymentId: String,

@@ -57,8 +57,8 @@
 
 <!-- PAGE BANNER -->
 <div class="page-banner">
-  <h1 class="page-banner-title">All Products</h1>
-  <p class="page-banner-sub">Explore our complete collection of premium handcrafted products</p>
+  <h1 class="page-banner-title" id="products-banner-title">All Products</h1>
+  <p class="page-banner-sub" id="products-banner-subtitle">Explore our complete collection of premium handcrafted products</p>
 </div>
 
 <!-- BREADCRUMB -->
@@ -216,11 +216,11 @@ async function loadProducts() {
   renderSkeleton('products-grid', 8);
   try {
     const res = await getProducts({ limit: 200 });
-    allProducts = window.mergeBelimaaProducts
-      ? mergeBelimaaProducts((res && res.data) ? res.data : [])
-      : ((res && res.data && res.data.length > 0) ? res.data : (window.BELIMAA_FALLBACK_PRODUCTS || ALL_FALLBACK));
+    allProducts = (res && Array.isArray(res.data)) ? res.data : [];
+    if (window.saveBelimaaLocalCatalog) saveBelimaaLocalCatalog(allProducts);
   } catch(e) {
-    allProducts = window.BELIMAA_FALLBACK_PRODUCTS || ALL_FALLBACK;
+    const cachedProducts = window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : [];
+    allProducts = cachedProducts.length ? cachedProducts : (window.BELIMAA_FALLBACK_PRODUCTS || ALL_FALLBACK);
   }
   const q = getParam('search');
   if (q) {
@@ -323,6 +323,7 @@ function goPage(n) {
 }
 
 loadProducts();
+if (window.bindBelimaaCatalogSync) bindBelimaaCatalogSync(loadProducts);
 </script>
 </body>
 </html>

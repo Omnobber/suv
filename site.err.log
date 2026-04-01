@@ -1,0 +1,93 @@
+::1 - - [31/Mar/2026 16:24:19] "GET / HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:24:36] "GET /index.html HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:24:58] "GET /index.html HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:24:58] "GET /css/style.css HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:24:58] "GET /js/shared.js HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:04] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:04] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:04] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:04] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:07] "GET /admin.html HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:07] "GET /images/products/light-wood-table-mandir.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:08] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:08] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:08] "GET /api/tables/belimaa_products?limit=100 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:08] "GET /api/tables/belimaa_settings?limit=1 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:11] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:11] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:12] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:12] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:12] "GET /images/products/tree-wall-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:12] "GET /images/products/painted-rangoli-disc.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:12] "GET /images/products/floral-relief-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:12] "GET /images/products/stainless-name-plate-a.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:16] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:16] "GET /api/tables/belimaa_settings?limit=1 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:22] code 404, message File not found
+::1 - - [31/Mar/2026 16:25:22] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/om-cutwork-mandir-pair.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/ram-mandir-model.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/ram-mandir-model-lit-a.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/ram-mandir-model-lit-b.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/ram-mandir-model-lit-c.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/golden-temple-model.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/wall-mandir-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/shubh-labh-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/mandala-rangoli-base.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/ganesha-rangoli-base.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/leaf-partition-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/floral-jali-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/mandala-clock-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/wood-number-clock.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/tree-round-wall-art.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/forest-deer-wall-art.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:25:23] "GET /images/products/carved-peacock-door.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:35:26] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:26] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:26] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:26] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:31] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:31] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:31] "GET /api/tables/belimaa_products?limit=100 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:31] "GET /api/tables/belimaa_settings?limit=1 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:40] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:40] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:40] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:40] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:35:44] code 404, message File not found
+::1 - - [31/Mar/2026 16:35:44] "GET /api/tables/belimaa_settings?limit=1 HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:36:02] code 404, message File not found
+::1 - - [31/Mar/2026 16:36:02] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:36:02] code 404, message File not found
+::1 - - [31/Mar/2026 16:36:02] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:36:05] code 501, message Unsupported method ('POST')
+::1 - - [31/Mar/2026 16:36:05] "POST /api/auth/login HTTP/1.1" 501 -
+::1 - - [31/Mar/2026 16:38:10] code 501, message Unsupported method ('POST')
+::1 - - [31/Mar/2026 16:38:10] "POST /api/auth/login HTTP/1.1" 501 -
+::1 - - [31/Mar/2026 16:38:13] "GET /admin.html HTTP/1.1" 304 -
+::1 - - [31/Mar/2026 16:38:13] code 404, message File not found
+::1 - - [31/Mar/2026 16:38:13] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:38:13] code 404, message File not found
+::1 - - [31/Mar/2026 16:38:13] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:38:28] code 404, message File not found
+::1 - - [31/Mar/2026 16:38:28] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:38:28] code 404, message File not found
+::1 - - [31/Mar/2026 16:38:28] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/ornate-frame-panel.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/led-sign-board-a.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/led-sign-board-b.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/acrylic-cut-letters.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/stainless-name-plate-b.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/stainless-engraving.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/blade-engraving.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/personalized-keychain-a.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/logo-keychain.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:39:34] "GET /images/products/personalized-keychain-b.jpg HTTP/1.1" 200 -
+::1 - - [31/Mar/2026 16:42:35] code 404, message File not found
+::1 - - [31/Mar/2026 16:42:35] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:42:35] code 404, message File not found
+::1 - - [31/Mar/2026 16:42:35] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:42:35] code 404, message File not found
+::1 - - [31/Mar/2026 16:42:35] "GET /api/health HTTP/1.1" 404 -
+::1 - - [31/Mar/2026 16:42:35] code 404, message File not found
+::1 - - [31/Mar/2026 16:42:35] "GET /api/health HTTP/1.1" 404 -

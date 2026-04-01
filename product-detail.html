@@ -379,14 +379,19 @@ async function loadProduct() {
   try {
     let product = null;
     try {
-      product = await getProductById(id);
+      const response = await getProductById(id);
+      product = response && response.data ? response.data : response;
     } catch(e) {}
     if (!product) {
-      const fallbackList = window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL;
+      const fallbackList = (window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : []).length
+        ? getBelimaaLocalCatalog()
+        : (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL);
       product = fallbackList.find(p => p.id === id);
     }
     if (!product) {
-      product = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL)[0];
+      product = ((window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : []).length
+        ? getBelimaaLocalCatalog()
+        : (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL))[0];
     }
     currentProduct = product;
     renderProduct(product);
@@ -521,15 +526,15 @@ function whatsAppOrder() {
 async function loadRelated(category, excludeId) {
   try {
     const res = await getProducts({ limit: 100 });
-    let prods = window.mergeBelimaaProducts
-      ? mergeBelimaaProducts((res && res.data) ? res.data : []).filter(p => p.category === category && p.id !== excludeId)
-      : ((res && res.data) ? res.data.filter(p => p.category === category && p.id !== excludeId) : []);
+    let prods = ((res && Array.isArray(res.data)) ? res.data : []).filter(p => p.category === category && p.id !== excludeId);
+    if (window.saveBelimaaLocalCatalog) saveBelimaaLocalCatalog((res && Array.isArray(res.data)) ? res.data : []);
     if (prods.length === 0) {
-      prods = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL).filter(p => p.category === category && p.id !== excludeId);
+      prods = (window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : []).filter(p => p.category === category && p.id !== excludeId);
     }
     renderProductGrid('related-products', prods.slice(0, 4));
   } catch(e) {
-    const prods = (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL).filter(p => p.category === category && p.id !== excludeId).slice(0, 4);
+    const cachedProducts = window.getBelimaaLocalCatalog ? getBelimaaLocalCatalog() : [];
+    const prods = (cachedProducts.length ? cachedProducts : (window.BELIMAA_FALLBACK_PRODUCTS || FALLBACK_ALL)).filter(p => p.category === category && p.id !== excludeId).slice(0, 4);
     renderProductGrid('related-products', prods);
   }
 }
@@ -550,6 +555,7 @@ function closeZoom() {
 }
 
 loadProduct();
+if (window.bindBelimaaCatalogSync) bindBelimaaCatalogSync(loadProduct);
 </script>
 </body>
 </html>

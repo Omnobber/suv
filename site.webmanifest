@@ -1,0 +1,15 @@
+{
+  "name": "Belimaa",
+  "short_name": "Belimaa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#edf3fb",
+  "theme_color": "#0b1f4d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

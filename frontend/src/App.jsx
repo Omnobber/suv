@@ -4,6 +4,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/LoginPage';
 import AdminPage from './pages/AdminPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import TrackingPage from './pages/TrackingPage';
 import { useAuth } from './context/AuthContext';
 
 function ProtectedRoute({ children }) {
@@ -17,6 +18,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/track-order" element={<TrackingPage />} />
       <Route path="/admin/login" element={<LoginPage />} />
       <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
     </Routes>
