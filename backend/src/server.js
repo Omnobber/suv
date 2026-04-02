@@ -18,8 +18,21 @@ dotenv.config();
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const projectRoot = path.join(__dirname, '..', '..');
 const uploadsDir = path.join(__dirname, '..', 'uploads');
+const cssDir = path.join(projectRoot, 'css');
+const jsDir = path.join(projectRoot, 'js');
+const imagesDir = path.join(projectRoot, 'images');
 const allowedOrigins = String(process.env.FRONTEND_ORIGIN || '').split(',').map((entry) => entry.trim()).filter(Boolean);
+const staticHtmlFiles = new Set([
+  'index.html',
+  'products.html',
+  'product-detail.html',
+  'category.html',
+  'cart.html',
+  'login.html',
+  'admin.html'
+]);
 
 fs.mkdirSync(uploadsDir, { recursive: true });
 app.disable('x-powered-by');
@@ -43,6 +56,13 @@ app.use(cors({
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true, limit: '5mb' }));
 app.use('/uploads', express.static(uploadsDir));
+app.use('/css', express.static(cssDir, { maxAge: '7d' }));
+app.use('/js', express.static(jsDir, { maxAge: '7d' }));
+app.use('/images', express.static(imagesDir, { maxAge: '30d' }));
+app.use('/favicon.svg', express.static(path.join(projectRoot, 'favicon.svg'), { maxAge: '30d' }));
+app.use('/robots.txt', express.static(path.join(projectRoot, 'robots.txt'), { maxAge: '1d' }));
+app.use('/site.webmanifest', express.static(path.join(projectRoot, 'site.webmanifest'), { maxAge: '1d' }));
+app.use('/sitemap.xml', express.static(path.join(projectRoot, 'sitemap.xml'), { maxAge: '1d' }));
 
 app.get('/api/health', (_, res) => {
   res.json({ status: 'ok' });
@@ -55,6 +75,16 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/tables', tableRoutes);
+
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(projectRoot, 'index.html'));
+});
+
+app.get('/:page', (req, res, next) => {
+  const page = String(req.params.page || '').trim();
+  if (!staticHtmlFiles.has(page)) return next();
+  res.sendFile(path.join(projectRoot, page));
+});
 
 app.use((err, _req, res, _next) => {
   console.error(err);
