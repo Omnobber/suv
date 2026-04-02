@@ -23,7 +23,6 @@ const uploadsDir = path.join(__dirname, '..', 'uploads');
 const cssDir = path.join(projectRoot, 'css');
 const jsDir = path.join(projectRoot, 'js');
 const imagesDir = path.join(projectRoot, 'images');
-const allowedOrigins = String(process.env.FRONTEND_ORIGIN || '').split(',').map((entry) => entry.trim()).filter(Boolean);
 const staticHtmlFiles = new Set([
   'index.html',
   'products.html',
@@ -45,14 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({
-  origin(origin, callback) {
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(null, false);
-  }
-}));
+app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true, limit: '5mb' }));
 app.use('/uploads', express.static(uploadsDir));
@@ -91,7 +83,7 @@ app.use((err, _req, res, _next) => {
   res.status(err.status || 500).json({ message: err.message || 'Server error.' });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 connectDB().then(() => {
   app.listen(PORT, () => {
